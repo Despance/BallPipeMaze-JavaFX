@@ -37,23 +37,23 @@ public class Io {
                switch (tempStringArray[1]){
 
                    case "Starter" :
-                       ControlOfTheSecond(tempStringArray[2]);
+                       ControlOfTheSecondForStarter(tempStringArray[2]);
                        break;
 
                    case "Empty" :
-                       ControlOfTheSecond(tempStringArray[2]);
+                       ControlOfTheSecondForEmpty(tempStringArray[2]);
                        break;
 
                    case "Pipe" :
-                       ControlOfTheSecond(tempStringArray[2]);
+                       ControlOfTheSecondForPipe(tempStringArray[2]);
                        break;
 
                    case "End" :
-                       ControlOfTheSecond(tempStringArray[2]);
+                       ControlOfTheSecondForEnd(tempStringArray[2]);
                        break;
 
                    case "PipeStatic" :
-                       ControlOfTheSecond(tempStringArray[2]);
+                       ControlOfTheSecondForPipeStatic(tempStringArray[2]);
                        break;
 
                }
@@ -66,7 +66,159 @@ public class Io {
 
     }
 
-    public void ControlOfTheSecond(String s){
+    public void ControlOfTheSecondForStarter(String s){
+        switch (s){
+
+            case "Vertical" :
+                list.add("location");
+                break;
+            case "Horizontal" :
+                list.add("location");
+                break;
+            case "none" :
+                list.add("location");
+                break;
+
+            case "Free" :
+                list.add("location");
+                break;
+
+            case "00" :
+                list.add("location");
+                break;
+
+            case "01" :
+                list.add("location");
+                break;
+
+            case "10" :
+                list.add("location");
+                break;
+
+            case "11" :
+                list.add("location");
+                break;
+        }
+
+
+
+    }
+
+    public void ControlOfTheSecondForEmpty(String s){
+        switch (s){
+
+            case "Vertical" :
+                list.add("location");
+                break;
+            case "Horizontal" :
+                list.add("location");
+                break;
+            case "none" :
+                list.add("location");
+                break;
+
+            case "Free" :
+                list.add("location");
+                break;
+
+            case "00" :
+                list.add("location");
+                break;
+
+            case "01" :
+                list.add("location");
+                break;
+
+            case "10" :
+                list.add("location");
+                break;
+
+            case "11" :
+                list.add("location");
+                break;
+        }
+
+
+
+    }
+
+    public void ControlOfTheSecondForPipe(String s){
+        switch (s){
+
+            case "Vertical" :
+                list.add("location");
+                break;
+            case "Horizontal" :
+                list.add("location");
+                break;
+            case "none" :
+                list.add("location");
+                break;
+
+            case "Free" :
+                list.add("location");
+                break;
+
+            case "00" :
+                list.add("location");
+                break;
+
+            case "01" :
+                list.add("location");
+                break;
+
+            case "10" :
+                list.add("location");
+                break;
+
+            case "11" :
+                list.add("location");
+                break;
+        }
+
+
+
+    }
+
+    public void ControlOfTheSecondForEnd(String s){
+        switch (s){
+
+            case "Vertical" :
+                list.add("location");
+                break;
+            case "Horizontal" :
+                list.add("location");
+                break;
+            case "none" :
+                list.add("location");
+                break;
+
+            case "Free" :
+                list.add("location");
+                break;
+
+            case "00" :
+                list.add("location");
+                break;
+
+            case "01" :
+                list.add("location");
+                break;
+
+            case "10" :
+                list.add("location");
+                break;
+
+            case "11" :
+                list.add("location");
+                break;
+        }
+
+
+
+    }
+
+    public void ControlOfTheSecondForPipeStatic(String s){
         switch (s){
 
             case "Vertical" :
