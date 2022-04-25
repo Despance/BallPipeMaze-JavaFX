@@ -1,11 +1,15 @@
 import javafx.application.Application;
-import javafx.geometry.Pos;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+
+import java.util.Random;
 
 public class GameScene extends Application {
 
@@ -21,11 +25,35 @@ public class GameScene extends Application {
 
 
         BorderPane borderPane = new BorderPane();
-        Pane pane = new Pane();
+        StackPane pane = new StackPane();
+        GamePane gamePane = new GamePane(4,4,50,10);
+        pane.getChildren().add(gamePane);
+        gamePane.setPadding(new Insets(10,10,10,10));
+
+
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                TestTile rectangle = new TestTile(0,0,50,50);
+                rectangle.setFill(Color.color(new Random().nextDouble(),new Random().nextDouble(),new Random().nextDouble()));
+
+
+                rectangle.setOnMousePressed(e->{
+                    rectangle.startX= e.getX();
+                    rectangle.startY = e.getY();
+                });
+                rectangle.setOnMouseReleased(e->{
+                    rectangle.finishX=e.getX();
+                    rectangle.finishY =e.getY();
+                    gamePane.changeTiles(rectangle, rectangle.checkDirection());
+
+                });
 
 
 
-        //pane.getChildren().add(new Button("click me"));
+                gamePane.add(rectangle);
+
+            }
+        }
 
         borderPane.setCenter(pane);
 
@@ -33,16 +61,16 @@ public class GameScene extends Application {
         borderPane.setBottom(new Button("click me"));
 
         borderPane.setLeft(new Button("click me"));
-        ((Button) borderPane.getLeft()).setAlignment(Pos.CENTER);
+
         borderPane.setRight(new Button("click me"));
-        ((Button) borderPane.getRight()).setAlignment(Pos.CENTER);
+
         borderPane.setTop(new Button("click me"));
-        ((Button) borderPane.getTop()).setAlignment(Pos.CENTER);
 
 
 
 
-        Scene scene = new Scene(borderPane,300 ,300);
+
+        Scene scene = new Scene(borderPane,450  ,350);
         primaryStage.setScene(scene);
         primaryStage.show();
 
