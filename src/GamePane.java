@@ -1,5 +1,12 @@
+import javafx.animation.KeyFrame;
+import javafx.animation.PathTransition;
+import javafx.animation.Timeline;
+import javafx.animation.TranslateTransition;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Line;
+import javafx.scene.transform.Translate;
+import javafx.util.Duration;
 
 public class GamePane extends Pane {
 
@@ -24,7 +31,9 @@ public class GamePane extends Pane {
     public void add(TestTile e){
         super.getChildren().add(e);
         e.resize(cellSize,cellSize);
-        e.relocate(currentRow*(cellSize+spacing),currentColumn*(cellSize+spacing));
+        //e.relocate(currentRow*(cellSize+spacing),currentColumn*(cellSize+spacing));
+        e.setTranslateX(currentRow*(cellSize+spacing));
+        e.setTranslateY(currentColumn*(cellSize+spacing));
 
         e.currentRow=currentRow;
         e.currentColumn=currentColumn;
@@ -41,44 +50,69 @@ public class GamePane extends Pane {
 
     public void changeTiles(TestTile t,String d){
 
-            int a =0;
-            int b =0;
-
-            double tempX = t.getLayoutX();
-            double tempY = t.getLayoutY();
-
             int tempRow = t.currentRow;
             int tempColumn = t.currentColumn;
 
-            switch (d){
-                case "Up":
-                    b =-1;
-                    break;
-                case "Down":
-                    b = +1;
-                    break;
-                case "Right":
-                    a = +1;
-                    break;
-                case "Left":
-                    a = -1;
-                    break;
+
+            TestTile changedTile = null;
+            for(Node tile : getChildren()){
+                TestTile currentTile = null;
+                if (tile instanceof TestTile)
+                    currentTile = (TestTile) tile;
+                if(currentTile!=null){
+                    switch (d){
+                        case "Up":
+                            if(currentTile.currentColumn==tempColumn-1 && currentTile.currentRow ==tempRow)
+                                changedTile=currentTile;
+                            break;
+                        case "Down":
+                            if(currentTile.currentColumn==tempColumn+1 && currentTile.currentRow ==tempRow)
+                                changedTile=currentTile;
+                            break;
+                        case "Right":
+                            if(currentTile.currentColumn==tempColumn && currentTile.currentRow ==tempRow+1)
+                                changedTile=currentTile;
+                            break;
+                        case "Left":
+                            if(currentTile.currentColumn==tempColumn && currentTile.currentRow ==tempRow-1)
+                                changedTile=currentTile;
+                            break;
+                    }
+                }
+
+
+            }
+
+            if(changedTile!=null){
+                double tempX = t.getTranslateX();
+                double tempY = t.getTranslateY();
+                double tX = changedTile.getTranslateX();
+                double tY = changedTile.getTranslateY();
+
+                TranslateTransition translate = new TranslateTransition();
+                translate.setToX(tX);
+                translate.setToY(tY);
+                translate.setNode(t);
+                translate.setDuration(Duration.millis(500));
+                translate.play();
+
+                t.currentRow= changedTile.currentRow;
+                t.currentColumn= changedTile.currentColumn;
+
+
+                TranslateTransition translateB = new TranslateTransition();
+                translateB.setToX(tempX);
+                translateB.setToY(tempY);
+                translateB.setNode(changedTile);
+                translateB.setDuration(Duration.millis(500));
+                translateB.play();
+
+                changedTile.currentRow=tempRow;
+                changedTile.currentColumn=tempColumn;
+
             }
 
 
-            //for ile ara
-
-            TestTile changedTile = (TestTile) getChildren().get(tempRow+a+((tempColumn+b)*columnCount));
-
-            System.out.println("startTile "+tempRow+" "+tempColumn);
-        System.out.println("changedTile "+changedTile.currentRow+" "+ changedTile.currentColumn);
-            t.relocate(changedTile.getLayoutX(),changedTile.getLayoutY());
-            t.currentRow= changedTile.currentRow;
-            t.currentColumn= changedTile.currentColumn;
-
-            changedTile.relocate(tempX,tempY);
-            changedTile.currentRow=tempRow;
-            changedTile.currentColumn=tempColumn;
 
 
 
