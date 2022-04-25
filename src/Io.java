@@ -4,7 +4,7 @@ import java.util.*;
 // burda yaptığım input dosyasını alıp ArrayListe tile locationını atamak
 public class Io {
 
-    private ArrayList<String> list = new ArrayList<>();
+    private ArrayList<String> list = new ArrayList<>(16);
     private File file;
     Scanner input;
 
@@ -37,23 +37,23 @@ public class Io {
                switch (tempStringArray[1]){
 
                    case "Starter" :
-                       ControlOfTheSecondForStarter(tempStringArray[2]);
+                       ControlOfTheSecondForStarter(index, tempStringArray[2]);
                        break;
 
                    case "Empty" :
-                       ControlOfTheSecondForEmpty(tempStringArray[2]);
+                       ControlOfTheSecondForEmpty(index, tempStringArray[2]);
                        break;
 
                    case "Pipe" :
-                       ControlOfTheSecondForPipe(tempStringArray[2]);
+                       ControlOfTheSecondForPipe(index, tempStringArray[2]);
                        break;
 
                    case "End" :
-                       ControlOfTheSecondForEnd(tempStringArray[2]);
+                       ControlOfTheSecondForEnd(index, tempStringArray[2]);
                        break;
 
                    case "PipeStatic" :
-                       ControlOfTheSecondForPipeStatic(tempStringArray[2]);
+                       ControlOfTheSecondForPipeStatic(index, tempStringArray[2]);
                        break;
 
                }
@@ -66,37 +66,37 @@ public class Io {
 
     }
 
-    public void ControlOfTheSecondForStarter(String s){
+    public void ControlOfTheSecondForStarter(int index, String s){
         switch (s){
 
             case "Vertical" :
-                list.add("location");
+                list.add(index, "location");
                 break;
             case "Horizontal" :
-                list.add("location");
+                list.add(index, "location");
                 break;
             case "none" :
-                list.add("location");
+                list.add(index, "location");
                 break;
 
             case "Free" :
-                list.add("location");
+                list.add(index, "location");
                 break;
 
             case "00" :
-                list.add("location");
+                list.add(index, "location");
                 break;
 
             case "01" :
-                list.add("location");
+                list.add(index, "location");
                 break;
 
             case "10" :
-                list.add("location");
+                list.add(index, "location");
                 break;
 
             case "11" :
-                list.add("location");
+                list.add(index, "location");
                 break;
         }
 
@@ -104,37 +104,37 @@ public class Io {
 
     }
 
-    public void ControlOfTheSecondForEmpty(String s){
+    public void ControlOfTheSecondForEmpty(int index, String s){
         switch (s){
 
             case "Vertical" :
-                list.add("location");
+                list.add(index, "location");
                 break;
             case "Horizontal" :
-                list.add("location");
+                list.add(index, "location");
                 break;
             case "none" :
-                list.add("location");
+                list.add(index, "location");
                 break;
 
             case "Free" :
-                list.add("location");
+                list.add(index, "location");
                 break;
 
             case "00" :
-                list.add("location");
+                list.add(index, "location");
                 break;
 
             case "01" :
-                list.add("location");
+                list.add(index, "location");
                 break;
 
             case "10" :
-                list.add("location");
+                list.add(index, "location");
                 break;
 
             case "11" :
-                list.add("location");
+                list.add(index, "location");
                 break;
         }
 
@@ -142,37 +142,37 @@ public class Io {
 
     }
 
-    public void ControlOfTheSecondForPipe(String s){
+    public void ControlOfTheSecondForPipe(int index, String s){
         switch (s){
 
             case "Vertical" :
-                list.add("location");
+                list.add(index, "location");
                 break;
             case "Horizontal" :
-                list.add("location");
+                list.add(index, "location");
                 break;
             case "none" :
-                list.add("location");
+                list.add(index, "location");
                 break;
 
             case "Free" :
-                list.add("location");
+                list.add(index, "location");
                 break;
 
             case "00" :
-                list.add("location");
+                list.add(index, "location");
                 break;
 
             case "01" :
-                list.add("location");
+                list.add(index, "location");
                 break;
 
             case "10" :
-                list.add("location");
+                list.add(index, "location");
                 break;
 
             case "11" :
-                list.add("location");
+                list.add(index, "location");
                 break;
         }
 
@@ -180,37 +180,37 @@ public class Io {
 
     }
 
-    public void ControlOfTheSecondForEnd(String s){
+    public void ControlOfTheSecondForEnd(int index, String s){
         switch (s){
 
             case "Vertical" :
-                list.add("location");
+                list.add(index, "location");
                 break;
             case "Horizontal" :
-                list.add("location");
+                list.add(index, "location");
                 break;
             case "none" :
-                list.add("location");
+                list.add(index, "location");
                 break;
 
             case "Free" :
-                list.add("location");
+                list.add(index, "location");
                 break;
 
             case "00" :
-                list.add("location");
+                list.add(index, "location");
                 break;
 
             case "01" :
-                list.add("location");
+                list.add(index, "location");
                 break;
 
             case "10" :
-                list.add("location");
+                list.add(index, "location");
                 break;
 
             case "11" :
-                list.add("location");
+                list.add(index, "location");
                 break;
         }
 
@@ -218,37 +218,37 @@ public class Io {
 
     }
 
-    public void ControlOfTheSecondForPipeStatic(String s){
+    public void ControlOfTheSecondForPipeStatic(int index, String s){
         switch (s){
 
             case "Vertical" :
-                list.add("location");
+                list.add(index, "location");
                 break;
             case "Horizontal" :
-                list.add("location");
+                list.add(index, "location");
                 break;
             case "none" :
-                list.add("location");
+                list.add(index, "location");
                 break;
 
             case "Free" :
-                list.add("location");
+                list.add(index, "location");
                 break;
 
             case "00" :
-                list.add("location");
+                list.add(index, "location");
                 break;
 
             case "01" :
-                list.add("location");
+                list.add(index, "location");
                 break;
 
             case "10" :
-                list.add("location");
+                list.add(index, "location");
                 break;
 
             case "11" :
-                list.add("location");
+                list.add(index, "location");
                 break;
         }
 
