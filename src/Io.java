@@ -42,6 +42,7 @@ public class Io {
                tempStringArray = tempS.split(",");
                index = Integer.parseInt(tempStringArray[0]);
 
+               /*
                switch (tempStringArray[1]){
 
                    case "Starter" :
@@ -65,7 +66,7 @@ public class Io {
                        break;
 
                }
-
+                */
 
            }
 
@@ -74,7 +75,7 @@ public class Io {
 
     }
 
-    public void ControlOfTheSecondForStarter(int tempIndex, String s){
+   /* public void ControlOfTheSecondForStarter(int tempIndex, String s){
         switch (s){
 
             case "Vertical" :
@@ -101,12 +102,12 @@ public class Io {
 
 
             case "none" :
-                tile = new BlockTile(tempIndex/4,tempIndex%4,"/Block.png");
+                tile = new BlockTile(tempIndex/4,tempIndex%4);
                 list.add(tempIndex, tile);
                 break;
 
             case "Free" :
-                tile = new FreeTile(tempIndex/4,tempIndex%4,"/Free.png");
+                tile = new FreeTile(tempIndex/4,tempIndex%4);
                 list.add(tempIndex, tile);
                 break;
 
@@ -130,7 +131,7 @@ public class Io {
                 list.add(tempIndex, tile);
                 break;
             case "Horizontal" :
-                tile = new PipeTile(tempIndex/4,tempIndex%4,"/Pipe.png");
+                tile = new PipeTile(tempIndex/4,tempIndex%4,);
                 list.add(tempIndex, tile);
                 break;
 
@@ -173,7 +174,7 @@ public class Io {
                 list.add(tempIndex, tile);
                 break;
             case "Horizontal" :
-                tile = new PipeStaticTile(tempIndex/4,tempIndex%4,"/PipeStatic.png");
+                tile = new PipeStaticTile(tempIndex/4,tempIndex%4,);
                 list.add(tempIndex, tile);
                 break;
 
@@ -195,7 +196,7 @@ public class Io {
                 break;
 
             case "11" :
-                tile = new PipeStaticTile(tempIndex/4,tempIndex%4,"/CurvedPipeStatic.png");
+                tile = new PipeStaticTile(tempIndex/4,tempIndex%4);
                 tile.rotateTile(90);
                 list.add(tempIndex, tile);
                 break;
@@ -208,6 +209,8 @@ public class Io {
 
 
     }
+
+    */
 
     public ArrayList<Tile> getList() {
         return list;

@@ -27,7 +27,6 @@ public class GamePane extends Pane {
     public void add(TestTile e){
         super.getChildren().add(e);
         e.resize(cellSize,cellSize);
-        //e.relocate(currentRow*(cellSize+spacing),currentColumn*(cellSize+spacing));
         e.setTranslateX(currentRow*(cellSize+spacing));
         e.setTranslateY(currentColumn*(cellSize+spacing));
 

@@ -1,9 +1,8 @@
 package Tiles;
 
-public class CurvedPipe extends Tile implements Movable{
-
-    public CurvedPipe(int currentRow, int currentColumn, String type) {
-        super(currentRow, currentColumn, "/CurvedPipe.png");
+public class CurvedStaticPipe extends Tile{
+    public CurvedStaticPipe(int currentRow, int currentColumn, String type ) {
+        super(currentRow, currentColumn, "/CurvedPipeStatic.png");
         switch(type){
             case "00":
                 rotateTile(180);
@@ -19,5 +18,8 @@ public class CurvedPipe extends Tile implements Movable{
                 break;
 
         }
+
+
+
     }
 }

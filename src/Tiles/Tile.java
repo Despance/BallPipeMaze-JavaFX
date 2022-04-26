@@ -21,7 +21,8 @@ public class Tile extends ImageView {
         this.currentRow = currentRow;
         super.setFitWidth(size);
         super.setFitHeight(size);
-    }
+
+            }
 
     public String checkDirection(){
         double degree = Math.atan2(finishY-startY, finishX- startX);
