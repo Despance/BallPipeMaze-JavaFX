@@ -5,7 +5,7 @@ import java.util.*;
 
 // burda yaptığım input dosyasını alıp ArrayListe tile locationını atamak
 public class Io {
-
+/*
     private ArrayList<Tiles> list = new ArrayList<>(16);
     private File file;
     Scanner input;
@@ -344,5 +344,5 @@ public class Io {
 
     public void setInput(Scanner input) {
         this.input = input;
-    }
+    }*/
 }

@@ -23,7 +23,6 @@ public class GameScene extends Application {
     public void start(Stage primaryStage){
         primaryStage.setTitle("Ball Pipe Maze");
 
-
         BorderPane borderPane = new BorderPane();
         StackPane pane = new StackPane();
         GamePane gamePane = new GamePane(4,4,50,10);

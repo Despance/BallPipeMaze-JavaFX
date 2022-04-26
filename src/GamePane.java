@@ -99,7 +99,7 @@ public class GamePane extends Pane {
                 t.currentRow= changedTile.currentRow;
                 t.currentColumn= changedTile.currentColumn;
 
-
+                System.out.println(tempX + " "+ tempY);
                 TranslateTransition translateB = new TranslateTransition();
                 translateB.setToX(tempX);
                 translateB.setToY(tempY);
