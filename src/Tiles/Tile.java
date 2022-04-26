@@ -1,4 +1,4 @@
-package TIles;
+package Tiles;
 
 import javafx.scene.image.ImageView;
 
@@ -41,6 +41,11 @@ public class Tile extends ImageView {
         }else{
             return null;
         }
+
+    }
+
+    public void rotateTile(int degree){
+        this.setRotate(degree);
 
     }
 

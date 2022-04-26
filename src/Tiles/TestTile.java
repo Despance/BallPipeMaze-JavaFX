@@ -1,4 +1,4 @@
-package TIles;
+package Tiles;
 
 import javafx.scene.shape.Rectangle;
 

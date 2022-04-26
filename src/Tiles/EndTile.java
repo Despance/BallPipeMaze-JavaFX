@@ -1,4 +1,4 @@
-package TIles;
+package Tiles;
 
 public class EndTile extends Tile{
 

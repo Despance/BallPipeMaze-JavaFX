@@ -1,14 +1,16 @@
-import javafx.scene.image.ImageView;
+import Tiles.*;
 
 import java.io.File;
 import java.util.*;
 
 // burda yaptığım input dosyasını alıp ArrayListe tile locationını atamak
 public class Io {
-/*
-    private ArrayList<Tiles> list = new ArrayList<>(16);
+
+    private ArrayList<Tile> list = new ArrayList<>(16);
     private File file;
     Scanner input;
+
+    Tile tile;
 
     public Io(){
     }
@@ -76,45 +78,17 @@ public class Io {
         switch (s){
 
             case "Vertical" :
-                Tiles image = new Starter();
-                list.add(tempIndex, image);
+                tile = new StarterTile(tempIndex/4,tempIndex%4,"/Starter.png");
+                tile.rotateTile(90);
+                list.add(tempIndex, tile);
                 break;
             case "Horizontal" :
-                Tiles image1 = new Starter();
-                ((Starter)image1).turnImageView(90);
-                list.add(tempIndex, image1);
-                break;
-            case "none" :
-                Tiles image2 = new Block();
-                list.add(tempIndex, image2);
+                tile = new StarterTile(tempIndex/4,tempIndex%4,"/Starter.png");
+                list.add(tempIndex, tile);
                 break;
 
-            case "Free" :
-                Tiles image3 = new Free();
-                list.add(tempIndex, image3);
-                break;
-
-            case "00" :
-                Tiles image4 = new CurvedPipe();
-                list.add(tempIndex, image4);
-                break;
-
-            case "01" :
-                Tiles image5 = new CurvedPipe();
-                ((CurvedPipe)image5).turnImageView(90);
-                list.add(tempIndex, image5);
-                break;
-
-            case "10" :
-                Tiles image6 = new CurvedPipe();
-                ((CurvedPipe)image6).turnImageView(180);
-                list.add(tempIndex, image6);
-                break;
-
-            case "11" :
-                Tiles image7 = new CurvedPipe();
-                ((CurvedPipe)image7).turnImageView(270);
-                list.add(tempIndex, image7);
+            default:
+                System.out.println("input not recognized");
                 break;
         }
 
@@ -125,47 +99,21 @@ public class Io {
     public void ControlOfTheSecondForEmpty(int tempIndex, String s){
         switch (s){
 
-            case "Vertical" :
-                Tiles image = new Pipe();
-                list.add(tempIndex, image);
-                break;
-            case "Horizontal" :
-                Tiles image1 = new Pipe();
-                ((Pipe)image1).turnImageView(90);
-                list.add(tempIndex, image1);
-                break;
+
             case "none" :
-                Tiles image2 = new Block();
-                list.add(tempIndex, image2);
+                tile = new BlockTile(tempIndex/4,tempIndex%4,"/Block.png");
+                list.add(tempIndex, tile);
                 break;
 
             case "Free" :
-                Tiles image3 = new Free();
-                list.add(tempIndex, image3);
+                tile = new FreeTile(tempIndex/4,tempIndex%4,"/Free.png");
+                list.add(tempIndex, tile);
                 break;
 
-            case "00" :
-                Tiles image4 = new CurvedPipe();
-                list.add(tempIndex, image4);
+            default:
+                System.out.println("input not recognized");
                 break;
 
-            case "01" :
-                Tiles image5 = new CurvedPipe();
-                ((CurvedPipe)image5).turnImageView(90);
-                list.add(tempIndex, image5);
-                break;
-
-            case "10" :
-                Tiles image6 = new CurvedPipe();
-                ((CurvedPipe)image6).turnImageView(180);
-                list.add(tempIndex, image6);
-                break;
-
-            case "11" :
-                Tiles image7 = new CurvedPipe();
-                ((CurvedPipe)image7).turnImageView(270);
-                list.add(tempIndex, image7);
-                break;
         }
 
 
@@ -177,45 +125,17 @@ public class Io {
         switch (s){
 
             case "Vertical" :
-                Tiles image = new Pipe();
-                list.add(tempIndex, image);
+                tile = new PipeTile(tempIndex/4,tempIndex%4,"/Pipe.png");
+                tile.rotateTile(90);
+                list.add(tempIndex, tile);
                 break;
             case "Horizontal" :
-                Tiles image1 = new Pipe();
-                ((Pipe)image1).turnImageView(90);
-                list.add(tempIndex, image1);
-                break;
-            case "none" :
-                Tiles image2 = new Block();
-                list.add(tempIndex, image2);
+                tile = new PipeTile(tempIndex/4,tempIndex%4,"/Pipe.png");
+                list.add(tempIndex, tile);
                 break;
 
-            case "Free" :
-                Tiles image3 = new Free();
-                list.add(tempIndex, image3);
-                break;
-
-            case "00" :
-                Tiles image4 = new CurvedPipe();
-                list.add(tempIndex, image4);
-                break;
-
-            case "01" :
-                Tiles image5 = new CurvedPipe();
-                ((CurvedPipe)image5).turnImageView(90);
-                list.add(tempIndex, image5);
-                break;
-
-            case "10" :
-                Tiles image6 = new CurvedPipe();
-                ((CurvedPipe)image6).turnImageView(180);
-                list.add(tempIndex, image6);
-                break;
-
-            case "11" :
-                Tiles image7 = new CurvedPipe();
-                ((CurvedPipe)image7).turnImageView(270);
-                list.add(tempIndex, image7);
+            default:
+                System.out.println("input not recognized");
                 break;
         }
 
@@ -227,45 +147,17 @@ public class Io {
         switch (s) {
 
             case "Vertical" :
-                Tiles image = new End();
-                list.add(tempIndex, image);
+                tile = new StarterTile(tempIndex/4,tempIndex%4,"/Starter.png");
+                tile.rotateTile(90);
+                list.add(tempIndex, tile);
                 break;
             case "Horizontal" :
-                Tiles image1 = new End();
-                ((End)image1).turnImageView(90);
-                list.add(tempIndex, image1);
-                break;
-            case "none" :
-                Tiles image2 = new Block();
-                list.add(tempIndex, image2);
+                tile = new StarterTile(tempIndex/4,tempIndex%4,"/Starter.png");
+                list.add(tempIndex, tile);
                 break;
 
-            case "Free" :
-                Tiles image3 = new Free();
-                list.add(tempIndex, image3);
-                break;
-
-            case "00" :
-                Tiles image4 = new CurvedPipe();
-                list.add(tempIndex, image4);
-                break;
-
-            case "01" :
-                Tiles image5 = new CurvedPipe();
-                ((CurvedPipe)image5).turnImageView(90);
-                list.add(tempIndex, image5);
-                break;
-
-            case "10" :
-                Tiles image6 = new CurvedPipe();
-                ((CurvedPipe)image6).turnImageView(180);
-                list.add(tempIndex, image6);
-                break;
-
-            case "11" :
-                Tiles image7 = new CurvedPipe();
-                ((CurvedPipe)image7).turnImageView(270);
-                list.add(tempIndex, image7);
+            default:
+                System.out.println("input not recognized");
                 break;
 
 
@@ -276,45 +168,40 @@ public class Io {
         switch (s){
 
             case "Vertical" :
-                Tiles image = new PipeStatic();
-                list.add(tempIndex, image);
+                tile = new PipeStaticTile(tempIndex/4,tempIndex%4,"/PipeStatic.png");
+                tile.rotateTile(90);
+                list.add(tempIndex, tile);
                 break;
             case "Horizontal" :
-                Tiles image1 = new PipeStatic();
-                ((PipeStatic)image1).turnImageView(90);
-                list.add(tempIndex, image1);
-                break;
-            case "none" :
-                Tiles image2 = new Block();
-                list.add(tempIndex, image2);
-                break;
-
-            case "Free" :
-                Tiles image3 = new Free();
-                list.add(tempIndex, image3);
+                tile = new PipeStaticTile(tempIndex/4,tempIndex%4,"/PipeStatic.png");
+                list.add(tempIndex, tile);
                 break;
 
             case "00" :
-                Tiles image4 = new CurvedPipe();
-                list.add(tempIndex, image4);
+                tile = new PipeStaticTile(tempIndex/4,tempIndex%4,"/CurvedPipeStatic.png");
+                tile.rotateTile(180);
+                list.add(tempIndex, tile);
                 break;
 
             case "01" :
-                Tiles image5 = new CurvedPipe();
-                ((CurvedPipe)image5).turnImageView(90);
-                list.add(tempIndex, image5);
+                tile = new PipeStaticTile(tempIndex/4,tempIndex%4,"/CurvedPipeStatic.png");
+                tile.rotateTile(270);
+                list.add(tempIndex, tile);
                 break;
 
             case "10" :
-                Tiles image6 = new CurvedPipe();
-                ((CurvedPipe)image6).turnImageView(180);
-                list.add(tempIndex, image6);
+                tile = new PipeStaticTile(tempIndex/4,tempIndex%4,"/CurvedPipeStatic.png");
+                list.add(tempIndex, tile);
                 break;
 
             case "11" :
-                Tiles image7 = new CurvedPipe();
-                ((CurvedPipe)image7).turnImageView(270);
-                list.add(tempIndex, image7);
+                tile = new PipeStaticTile(tempIndex/4,tempIndex%4,"/CurvedPipeStatic.png");
+                tile.rotateTile(90);
+                list.add(tempIndex, tile);
+                break;
+
+            default:
+                System.out.println("input not recognized");
                 break;
         }
 
@@ -322,11 +209,11 @@ public class Io {
 
     }
 
-    public ArrayList<Tiles> getList() {
+    public ArrayList<Tile> getList() {
         return list;
     }
 
-    public void setList(ArrayList<Tiles> list) {
+    public void setList(ArrayList<Tile> list) {
         this.list = list;
     }
 
@@ -344,5 +231,5 @@ public class Io {
 
     public void setInput(Scanner input) {
         this.input = input;
-    }*/
+    }
 }

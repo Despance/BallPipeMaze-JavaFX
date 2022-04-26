@@ -1,4 +1,4 @@
-import TIles.TestTile;
+import Tiles.TestTile;
 import javafx.animation.TranslateTransition;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;

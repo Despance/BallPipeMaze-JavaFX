@@ -1,6 +1,4 @@
-package TIles;
-
-import TIles.Tile;
+package Tiles;
 
 public class StarterTile extends Tile {
 
