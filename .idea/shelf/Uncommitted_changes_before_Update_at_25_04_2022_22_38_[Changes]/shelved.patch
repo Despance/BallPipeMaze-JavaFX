@@ -1,0 +1,216 @@
+Index: src/Pipe.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Pipe.java b/src/Pipe.java
+new file mode 100644
+--- /dev/null	(date 1650915490344)
++++ b/src/Pipe.java	(date 1650915490344)
+@@ -0,0 +1,22 @@
++import javafx.application.Application;
++import javafx.scene.image.*;
++import javafx.stage.*;
++
++public class Pipe  implements Tiles, Movable{
++
++    public Pipe(){
++
++    }
++
++    public ImageView getImage(){
++        Image image = new Image("");
++        ImageView tile = new ImageView(image);
++        tile.setFitHeight(100);
++        tile.setFitWidth(100);
++        return tile;
++    }
++
++    public boolean isMovable(){
++        return true;
++    }
++}
+Index: src/End.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/End.java b/src/End.java
+new file mode 100644
+--- /dev/null	(date 1650915490332)
++++ b/src/End.java	(date 1650915490332)
+@@ -0,0 +1,20 @@
++import javafx.scene.image.Image;
++import javafx.scene.image.ImageView;
++
++public class End implements Tiles{
++
++
++
++
++    public ImageView getImage(){
++        Image image = new Image("");
++        ImageView tile = new ImageView(image);
++        tile.setFitHeight(100);
++        tile.setFitWidth(100);
++        return tile;
++    }
++
++    public boolean isMovable(){
++        return false;
++    }
++}
+Index: src/Block.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Block.java b/src/Block.java
+new file mode 100644
+--- /dev/null	(date 1650915490320)
++++ b/src/Block.java	(date 1650915490320)
+@@ -0,0 +1,17 @@
++import javafx.scene.image.Image;
++import javafx.scene.image.ImageView;
++
++public class Block implements Empty{
++
++
++    public ImageView getImage(){
++        Image image = new Image("");
++        ImageView tile = new ImageView(image);
++        tile.setFitHeight(100);
++        tile.setFitWidth(100);
++        return tile;
++    }
++    public boolean isMovable(){
++        return true;
++    }
++}
+Index: src/PipeStatic.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/PipeStatic.java b/src/PipeStatic.java
+new file mode 100644
+--- /dev/null	(date 1650915490307)
++++ b/src/PipeStatic.java	(date 1650915490307)
+@@ -0,0 +1,17 @@
++import javafx.scene.image.Image;
++import javafx.scene.image.ImageView;
++
++public class PipeStatic implements Tiles {
++
++    public ImageView getImage(){
++        Image image = new Image("");
++        ImageView tile = new ImageView(image);
++        tile.setFitHeight(100);
++        tile.setFitWidth(100);
++        return tile;
++    }
++
++    public boolean isMovable(){
++        return false;
++    }
++}
+Index: src/Free.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Free.java b/src/Free.java
+new file mode 100644
+--- /dev/null	(date 1650915490385)
++++ b/src/Free.java	(date 1650915490385)
+@@ -0,0 +1,18 @@
++import javafx.scene.image.Image;
++import javafx.scene.image.ImageView;
++
++public class Free implements Empty{
++
++
++    public ImageView getImage(){
++        Image image = new Image("");
++        ImageView tile = new ImageView(image);
++        tile.setFitHeight(100);
++        tile.setFitWidth(100);
++        return tile;
++    }
++
++    public boolean isMovable(){
++        return true;
++    }
++}
+Index: src/Movable.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Movable.java b/src/Movable.java
+new file mode 100644
+--- /dev/null	(date 1650915490356)
++++ b/src/Movable.java	(date 1650915490356)
+@@ -0,0 +1,3 @@
++public interface Movable {
++    boolean isMovable();
++}
+Index: src/Starter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Starter.java b/src/Starter.java
+new file mode 100644
+--- /dev/null	(date 1650915490293)
++++ b/src/Starter.java	(date 1650915490293)
+@@ -0,0 +1,20 @@
++import javafx.scene.image.Image;
++import javafx.scene.image.ImageView;
++
++public class Starter implements Tiles {
++
++
++
++    public ImageView getImage(){
++        Image image = new Image("");
++        ImageView tile = new ImageView(image);
++        tile.setFitHeight(100);
++        tile.setFitWidth(100);
++        return tile;
++    }
++
++    public boolean isMovable(){
++        return false;
++    }
++
++}
+Index: src/Tiles.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Tiles.java b/src/Tiles.java
+new file mode 100644
+--- /dev/null	(date 1650915490371)
++++ b/src/Tiles.java	(date 1650915490371)
+@@ -0,0 +1,6 @@
++import javafx.scene.image.ImageView;
++
++public interface Tiles {
++
++    ImageView getImage();
++}
+Index: src/Empty.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Empty.java b/src/Empty.java
+new file mode 100644
+--- /dev/null	(date 1650900793732)
++++ b/src/Empty.java	(date 1650900793732)
+@@ -0,0 +1,3 @@
++public interface Empty extends Tiles, Movable{
++
++}
