@@ -1,4 +1,8 @@
-public class StarterTile extends Tile{
+package TIles;
+
+import TIles.Tile;
+
+public class StarterTile extends Tile {
 
 
 

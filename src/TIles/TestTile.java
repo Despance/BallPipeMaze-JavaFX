@@ -1,22 +1,24 @@
+package TIles;
+
 import javafx.scene.shape.Rectangle;
 
 public class TestTile extends Rectangle {
 
 
-    int currentRow;
-    int currentColumn;
+    public int currentRow;
+    public int currentColumn;
 
     public double startX;
     public double startY;
     public double finishX;
     public double finishY;
 
-    TestTile(int x,int y,int width,int height){
+    public TestTile(int x,int y,int width,int height){
         super(x,y,width,height);
     }
 
 
-    String checkDirection(){
+    public String checkDirection(){
         double degree = Math.atan2(finishY-startY, finishX- startX);
 
         if(degree< Math.PI/4 && degree>-Math.PI/4){

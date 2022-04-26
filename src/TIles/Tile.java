@@ -1,3 +1,5 @@
+package TIles;
+
 import javafx.scene.image.ImageView;
 
 public class Tile extends ImageView {

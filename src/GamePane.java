@@ -1,11 +1,7 @@
-import javafx.animation.KeyFrame;
-import javafx.animation.PathTransition;
-import javafx.animation.Timeline;
+import TIles.TestTile;
 import javafx.animation.TranslateTransition;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Line;
-import javafx.scene.transform.Translate;
 import javafx.util.Duration;
 
 public class GamePane extends Pane {
