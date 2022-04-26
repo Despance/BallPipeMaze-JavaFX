@@ -80,7 +80,6 @@ public class Io {
             case "Vertical" :
                 tile = new StarterTile(tempIndex/4,tempIndex%4,"/Starter.png");
                 tile.rotateTile(90);
-                list.add(tempIndex, tile);
                 break;
             case "Horizontal" :
                 tile = new StarterTile(tempIndex/4,tempIndex%4,"/Starter.png");
@@ -91,7 +90,7 @@ public class Io {
                 System.out.println("input not recognized");
                 break;
         }
-
+        list.add(tempIndex, tile);
 
 
     }
@@ -102,12 +101,10 @@ public class Io {
 
             case "none" :
                 tile = new BlockTile(tempIndex/4,tempIndex%4,"/Block.png");
-                list.add(tempIndex, tile);
                 break;
 
             case "Free" :
                 tile = new FreeTile(tempIndex/4,tempIndex%4,"/Free.png");
-                list.add(tempIndex, tile);
                 break;
 
             default:
@@ -116,7 +113,7 @@ public class Io {
 
         }
 
-
+        list.add(tempIndex, tile);
 
     }
 
@@ -127,18 +124,16 @@ public class Io {
             case "Vertical" :
                 tile = new PipeTile(tempIndex/4,tempIndex%4,"/Pipe.png");
                 tile.rotateTile(90);
-                list.add(tempIndex, tile);
                 break;
             case "Horizontal" :
                 tile = new PipeTile(tempIndex/4,tempIndex%4,"/Pipe.png");
-                list.add(tempIndex, tile);
                 break;
 
             default:
                 System.out.println("input not recognized");
                 break;
         }
-
+        list.add(tempIndex, tile);
 
 
     }
@@ -147,13 +142,11 @@ public class Io {
         switch (s) {
 
             case "Vertical" :
-                tile = new StarterTile(tempIndex/4,tempIndex%4,"/Starter.png");
+                tile = new StarterTile(tempIndex/4,tempIndex%4,"/End.png");
                 tile.rotateTile(90);
-                list.add(tempIndex, tile);
                 break;
             case "Horizontal" :
-                tile = new StarterTile(tempIndex/4,tempIndex%4,"/Starter.png");
-                list.add(tempIndex, tile);
+                tile = new StarterTile(tempIndex/4,tempIndex%4,"/End.png");
                 break;
 
             default:
@@ -162,6 +155,7 @@ public class Io {
 
 
         }
+        list.add(tempIndex, tile);
     }
 
     public void ControlOfTheSecondForPipeStatic(int tempIndex, String s){
@@ -170,34 +164,28 @@ public class Io {
             case "Vertical" :
                 tile = new PipeStaticTile(tempIndex/4,tempIndex%4,"/PipeStatic.png");
                 tile.rotateTile(90);
-                list.add(tempIndex, tile);
                 break;
             case "Horizontal" :
                 tile = new PipeStaticTile(tempIndex/4,tempIndex%4,"/PipeStatic.png");
-                list.add(tempIndex, tile);
                 break;
 
             case "00" :
                 tile = new PipeStaticTile(tempIndex/4,tempIndex%4,"/CurvedPipeStatic.png");
                 tile.rotateTile(180);
-                list.add(tempIndex, tile);
                 break;
 
             case "01" :
                 tile = new PipeStaticTile(tempIndex/4,tempIndex%4,"/CurvedPipeStatic.png");
                 tile.rotateTile(270);
-                list.add(tempIndex, tile);
                 break;
 
             case "10" :
                 tile = new PipeStaticTile(tempIndex/4,tempIndex%4,"/CurvedPipeStatic.png");
-                list.add(tempIndex, tile);
                 break;
 
             case "11" :
                 tile = new PipeStaticTile(tempIndex/4,tempIndex%4,"/CurvedPipeStatic.png");
                 tile.rotateTile(90);
-                list.add(tempIndex, tile);
                 break;
 
             default:
@@ -205,7 +193,7 @@ public class Io {
                 break;
         }
 
-
+        list.add(tempIndex, tile);
 
     }
 
