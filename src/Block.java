@@ -11,12 +11,14 @@ public class Block implements Empty{
     public double finishX;
     public double finishY;
 
+    Image image;
+    ImageView imageView;
     public ImageView getImage(){
-        Image image = new Image("/Block.png");
-        ImageView tile = new ImageView(image);
-        tile.setFitHeight(100);
-        tile.setFitWidth(100);
-        return tile;
+        image = new Image("/Block.png");
+        imageView = new ImageView(image);
+        imageView.setFitHeight(100);
+        imageView.setFitWidth(100);
+        return imageView;
     }
     public boolean isMovable(){
         return true;

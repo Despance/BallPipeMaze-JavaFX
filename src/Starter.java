@@ -11,12 +11,18 @@ public class Starter implements Tiles {
     public double finishX;
     public double finishY;
 
+    Image image;
+    ImageView imageView;
     public ImageView getImage(){
-        Image image = new Image("Starter.png");
-        ImageView tile = new ImageView(image);
-        tile.setFitHeight(100);
-        tile.setFitWidth(100);
-        return tile;
+        image = new Image("Starter.png");
+        imageView = new ImageView(image);
+        imageView.setFitHeight(100);
+        imageView.setFitWidth(100);
+        return imageView;
+    }
+
+    public void turnImageView(int degree){
+        imageView.setRotate(degree);
     }
 
     public boolean isMovable(){

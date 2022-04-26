@@ -6,7 +6,7 @@ import java.util.*;
 // burda yaptığım input dosyasını alıp ArrayListe tile locationını atamak
 public class Io {
 
-    private ArrayList<ImageView> list = new ArrayList<>(16);
+    private ArrayList<Tiles> list = new ArrayList<>(16);
     private File file;
     Scanner input;
 
@@ -33,7 +33,11 @@ public class Io {
            int index;
 
            while (input.hasNext()){
-               tempStringArray = input.nextLine().split(",");
+
+               String tempS = input.nextLine();
+               if(tempS.equals(""))
+                   continue;
+               tempStringArray = tempS.split(",");
                index = Integer.parseInt(tempStringArray[0]);
 
                switch (tempStringArray[1]){
@@ -72,48 +76,44 @@ public class Io {
         switch (s){
 
             case "Vertical" :
-                ImageView image = new Pipe().getImage();
-                image.setRotate(0);
+                Tiles image = new Starter();
                 list.add(tempIndex, image);
                 break;
             case "Horizontal" :
-                ImageView image1 = new Pipe().getImage();
-                image1.setRotate(90);
+                Tiles image1 = new Starter();
+                ((Starter)image1).turnImageView(90);
                 list.add(tempIndex, image1);
                 break;
             case "none" :
-                ImageView image2 = new Block().getImage();
-                image2.setRotate(0);
+                Tiles image2 = new Block();
                 list.add(tempIndex, image2);
                 break;
 
             case "Free" :
-                ImageView image3 = new Free().getImage();
-                image3.setRotate(0);
+                Tiles image3 = new Free();
                 list.add(tempIndex, image3);
                 break;
 
             case "00" :
-                ImageView image4 = new CurvedPipe().getImage();
-                image4.setRotate(0);
+                Tiles image4 = new CurvedPipe();
                 list.add(tempIndex, image4);
                 break;
 
             case "01" :
-                ImageView image5 = new CurvedPipe().getImage();
-                image5.setRotate(90);
+                Tiles image5 = new CurvedPipe();
+                ((CurvedPipe)image5).turnImageView(90);
                 list.add(tempIndex, image5);
                 break;
 
             case "10" :
-                ImageView image6 = new CurvedPipe().getImage();
-                image6.setRotate(180);
+                Tiles image6 = new CurvedPipe();
+                ((CurvedPipe)image6).turnImageView(180);
                 list.add(tempIndex, image6);
                 break;
 
             case "11" :
-                ImageView image7 = new CurvedPipe().getImage();
-                image7.setRotate(270);
+                Tiles image7 = new CurvedPipe();
+                ((CurvedPipe)image7).turnImageView(270);
                 list.add(tempIndex, image7);
                 break;
         }
@@ -126,48 +126,44 @@ public class Io {
         switch (s){
 
             case "Vertical" :
-                ImageView image = new Pipe().getImage();
-                image.setRotate(0);
+                Tiles image = new Pipe();
                 list.add(tempIndex, image);
                 break;
             case "Horizontal" :
-                ImageView image1 = new Pipe().getImage();
-                image1.setRotate(90);
+                Tiles image1 = new Pipe();
+                ((Pipe)image1).turnImageView(90);
                 list.add(tempIndex, image1);
                 break;
             case "none" :
-                ImageView image2 = new Block().getImage();
-                image2.setRotate(0);
+                Tiles image2 = new Block();
                 list.add(tempIndex, image2);
                 break;
 
             case "Free" :
-                ImageView image3 = new Free().getImage();
-                image3.setRotate(0);
+                Tiles image3 = new Free();
                 list.add(tempIndex, image3);
                 break;
 
             case "00" :
-                ImageView image4 = new CurvedPipe().getImage();
-                image4.setRotate(0);
+                Tiles image4 = new CurvedPipe();
                 list.add(tempIndex, image4);
                 break;
 
             case "01" :
-                ImageView image5 = new CurvedPipe().getImage();
-                image5.setRotate(90);
+                Tiles image5 = new CurvedPipe();
+                ((CurvedPipe)image5).turnImageView(90);
                 list.add(tempIndex, image5);
                 break;
 
             case "10" :
-                ImageView image6 = new CurvedPipe().getImage();
-                image6.setRotate(180);
+                Tiles image6 = new CurvedPipe();
+                ((CurvedPipe)image6).turnImageView(180);
                 list.add(tempIndex, image6);
                 break;
 
             case "11" :
-                ImageView image7 = new CurvedPipe().getImage();
-                image7.setRotate(270);
+                Tiles image7 = new CurvedPipe();
+                ((CurvedPipe)image7).turnImageView(270);
                 list.add(tempIndex, image7);
                 break;
         }
@@ -181,48 +177,44 @@ public class Io {
         switch (s){
 
             case "Vertical" :
-                ImageView image = new Pipe().getImage();
-                image.setRotate(0);
+                Tiles image = new Pipe();
                 list.add(tempIndex, image);
                 break;
             case "Horizontal" :
-                ImageView image1 = new Pipe().getImage();
-                image1.setRotate(90);
+                Tiles image1 = new Pipe();
+                ((Pipe)image1).turnImageView(90);
                 list.add(tempIndex, image1);
                 break;
             case "none" :
-                ImageView image2 = new Block().getImage();
-                image2.setRotate(0);
+                Tiles image2 = new Block();
                 list.add(tempIndex, image2);
                 break;
 
             case "Free" :
-                ImageView image3 = new Free().getImage();
-                image3.setRotate(0);
+                Tiles image3 = new Free();
                 list.add(tempIndex, image3);
                 break;
 
             case "00" :
-                ImageView image4 = new CurvedPipe().getImage();
-                image4.setRotate(0);
+                Tiles image4 = new CurvedPipe();
                 list.add(tempIndex, image4);
                 break;
 
             case "01" :
-                ImageView image5 = new CurvedPipe().getImage();
-                image5.setRotate(90);
+                Tiles image5 = new CurvedPipe();
+                ((CurvedPipe)image5).turnImageView(90);
                 list.add(tempIndex, image5);
                 break;
 
             case "10" :
-                ImageView image6 = new CurvedPipe().getImage();
-                image6.setRotate(180);
+                Tiles image6 = new CurvedPipe();
+                ((CurvedPipe)image6).turnImageView(180);
                 list.add(tempIndex, image6);
                 break;
 
             case "11" :
-                ImageView image7 = new CurvedPipe().getImage();
-                image7.setRotate(270);
+                Tiles image7 = new CurvedPipe();
+                ((CurvedPipe)image7).turnImageView(270);
                 list.add(tempIndex, image7);
                 break;
         }
@@ -234,49 +226,45 @@ public class Io {
     public void ControlOfTheSecondForEnd(int tempIndex, String s){
         switch (s) {
 
-            case "Vertical":
-                ImageView image = new Pipe().getImage();
-                image.setRotate(0);
+            case "Vertical" :
+                Tiles image = new End();
                 list.add(tempIndex, image);
                 break;
-            case "Horizontal":
-                ImageView image1 = new Pipe().getImage();
-                image1.setRotate(90);
+            case "Horizontal" :
+                Tiles image1 = new End();
+                ((End)image1).turnImageView(90);
                 list.add(tempIndex, image1);
                 break;
-            case "none":
-                ImageView image2 = new Block().getImage();
-                image2.setRotate(0);
+            case "none" :
+                Tiles image2 = new Block();
                 list.add(tempIndex, image2);
                 break;
 
-            case "Free":
-                ImageView image3 = new Free().getImage();
-                image3.setRotate(0);
+            case "Free" :
+                Tiles image3 = new Free();
                 list.add(tempIndex, image3);
                 break;
 
-            case "00":
-                ImageView image4 = new CurvedPipe().getImage();
-                image4.setRotate(0);
+            case "00" :
+                Tiles image4 = new CurvedPipe();
                 list.add(tempIndex, image4);
                 break;
 
-            case "01":
-                ImageView image5 = new CurvedPipe().getImage();
-                image5.setRotate(90);
+            case "01" :
+                Tiles image5 = new CurvedPipe();
+                ((CurvedPipe)image5).turnImageView(90);
                 list.add(tempIndex, image5);
                 break;
 
-            case "10":
-                ImageView image6 = new CurvedPipe().getImage();
-                image6.setRotate(180);
+            case "10" :
+                Tiles image6 = new CurvedPipe();
+                ((CurvedPipe)image6).turnImageView(180);
                 list.add(tempIndex, image6);
                 break;
 
-            case "11":
-                ImageView image7 = new CurvedPipe().getImage();
-                image7.setRotate(270);
+            case "11" :
+                Tiles image7 = new CurvedPipe();
+                ((CurvedPipe)image7).turnImageView(270);
                 list.add(tempIndex, image7);
                 break;
 
@@ -288,48 +276,44 @@ public class Io {
         switch (s){
 
             case "Vertical" :
-                ImageView image = new Pipe().getImage();
-                image.setRotate(0);
+                Tiles image = new PipeStatic();
                 list.add(tempIndex, image);
                 break;
             case "Horizontal" :
-                ImageView image1 = new Pipe().getImage();
-                image1.setRotate(90);
+                Tiles image1 = new PipeStatic();
+                ((PipeStatic)image1).turnImageView(90);
                 list.add(tempIndex, image1);
                 break;
             case "none" :
-                ImageView image2 = new Block().getImage();
-                image2.setRotate(0);
+                Tiles image2 = new Block();
                 list.add(tempIndex, image2);
                 break;
 
             case "Free" :
-                ImageView image3 = new Free().getImage();
-                image3.setRotate(0);
+                Tiles image3 = new Free();
                 list.add(tempIndex, image3);
                 break;
 
             case "00" :
-                ImageView image4 = new CurvedPipe().getImage();
-                image4.setRotate(0);
+                Tiles image4 = new CurvedPipe();
                 list.add(tempIndex, image4);
                 break;
 
             case "01" :
-                ImageView image5 = new CurvedPipe().getImage();
-                image5.setRotate(90);
+                Tiles image5 = new CurvedPipe();
+                ((CurvedPipe)image5).turnImageView(90);
                 list.add(tempIndex, image5);
                 break;
 
             case "10" :
-                ImageView image6 = new CurvedPipe().getImage();
-                image6.setRotate(180);
+                Tiles image6 = new CurvedPipe();
+                ((CurvedPipe)image6).turnImageView(180);
                 list.add(tempIndex, image6);
                 break;
 
             case "11" :
-                ImageView image7 = new CurvedPipe().getImage();
-                image7.setRotate(270);
+                Tiles image7 = new CurvedPipe();
+                ((CurvedPipe)image7).turnImageView(270);
                 list.add(tempIndex, image7);
                 break;
         }
@@ -338,11 +322,11 @@ public class Io {
 
     }
 
-    public ArrayList<ImageView> getList() {
+    public ArrayList<Tiles> getList() {
         return list;
     }
 
-    public void setList(ArrayList<ImageView> list) {
+    public void setList(ArrayList<Tiles> list) {
         this.list = list;
     }
 

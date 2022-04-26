@@ -1,6 +1,4 @@
-import javafx.application.Application;
 import javafx.scene.image.*;
-import javafx.stage.*;
 
 public class CurvedPipe  implements Tiles, Movable{
 
@@ -12,16 +10,22 @@ public class CurvedPipe  implements Tiles, Movable{
     public double finishX;
     public double finishY;
 
+    Image image;
+    ImageView imageView;
     public CurvedPipe(){
 
     }
 
     public ImageView getImage(){
-        Image image = new Image("/CurvedPipe.png");
-        ImageView tile = new ImageView(image);
-        tile.setFitHeight(100);
-        tile.setFitWidth(100);
-        return tile;
+        image = new Image("/CurvedPipe.png");
+        imageView = new ImageView(image);
+        imageView.setFitHeight(100);
+        imageView.setFitWidth(100);
+        return imageView;
+    }
+
+    public void turnImageView(int degree){
+        imageView.setRotate(degree);
     }
 
     public boolean isMovable(){
