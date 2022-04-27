@@ -1,7 +1,7 @@
 package Tiles;
 
-public class CurvedStaticPipe extends Tile{
-    public CurvedStaticPipe(int currentRow, int currentColumn, String type ) {
+public class CurvedPipeStaticTile extends Tile{
+    public CurvedPipeStaticTile(int currentRow, int currentColumn, String type ) {
         super(currentRow, currentColumn, "/CurvedPipeStatic.png");
         switch(type){
             case "00":

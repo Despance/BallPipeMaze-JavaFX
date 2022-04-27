@@ -1,8 +1,8 @@
 package Tiles;
 
-public class CurvedPipe extends Tile implements Movable{
+public class CurvedPipeTile extends Tile implements Movable{
 
-    public CurvedPipe(int currentRow, int currentColumn, String type) {
+    public CurvedPipeTile(int currentRow, int currentColumn, String type) {
         super(currentRow, currentColumn, "/CurvedPipe.png");
         switch(type){
             case "00":
