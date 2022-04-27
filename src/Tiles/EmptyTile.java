@@ -11,7 +11,7 @@ public class EmptyTile extends Tile implements Movable{
 
     }
 
-
+    /*
     @Override
     public void onClicked() {
 
@@ -21,4 +21,6 @@ public class EmptyTile extends Tile implements Movable{
     public void onRelease() {
 
     }
+
+     */
 }

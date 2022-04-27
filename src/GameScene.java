@@ -1,9 +1,11 @@
 import Tiles.Tile;
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -23,7 +25,7 @@ public class GameScene extends Application {
 
         BorderPane borderPane = new BorderPane();
         StackPane pane = new StackPane();
-        GamePane gamePane = new GamePane(4,4,50,10);
+        GamePane gamePane = new GamePane(4,4,100,2);
         pane.getChildren().add(gamePane);
         gamePane.setPadding(new Insets(10,10,10,10));
 
@@ -62,10 +64,18 @@ public class GameScene extends Application {
         }
         */
 
-
+        pane.setPadding(new Insets(10,10,10,10));
         borderPane.setCenter(pane);
 
+        HBox hBox = new HBox(15);
+        hBox.setAlignment(Pos.CENTER);
+        hBox.getChildren().add(new Button("Check"));
+        hBox.getChildren().add(new Button("Next"));
+        borderPane.setBottom(hBox);
 
+
+
+        /*
         borderPane.setBottom(new Button("click me"));
 
         borderPane.setLeft(new Button("click me"));
@@ -73,12 +83,12 @@ public class GameScene extends Application {
         borderPane.setRight(new Button("click me"));
 
         borderPane.setTop(new Button("click me"));
+        */
 
 
 
 
-
-        Scene scene = new Scene(borderPane,450  ,350);
+        Scene scene = new Scene(borderPane,426  ,454);
         primaryStage.setScene(scene);
         primaryStage.show();
 
