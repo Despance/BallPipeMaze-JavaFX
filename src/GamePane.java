@@ -1,4 +1,5 @@
-import Tiles.TestTile;
+import Tiles.Movable;
+import Tiles.Tile;
 import javafx.animation.TranslateTransition;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
@@ -24,14 +25,15 @@ public class GamePane extends Pane {
 
 
 
-    public void add(TestTile e){
+    public void add(Tile e){
         super.getChildren().add(e);
-        e.resize(cellSize,cellSize);
+        e.setFitWidth(cellSize);
+        e.setFitHeight(cellSize);
         e.setTranslateX(currentRow*(cellSize+spacing));
         e.setTranslateY(currentColumn*(cellSize+spacing));
 
-        e.currentRow=currentRow;
-        e.currentColumn=currentColumn;
+        e.setCurrentRow(currentRow);
+        e.setCurrentRow(currentColumn);
 
         System.out.println(currentRow+ " "+ currentColumn);
 
@@ -43,33 +45,33 @@ public class GamePane extends Pane {
 
     }
 
-    public void changeTiles(TestTile t,String d){
+    public void changeTiles(Tile t,String d){
 
-            int tempRow = t.currentRow;
-            int tempColumn = t.currentColumn;
+            int tempRow = t.getCurrentRow();
+            int tempColumn = t.getCurrentColumn();
 
 
-            TestTile changedTile = null;
+            Tile changedTile = null;
             for(Node tile : getChildren()){
-                TestTile currentTile = null;
-                if (tile instanceof TestTile)
-                    currentTile = (TestTile) tile;
+                Tile currentTile = null;
+                if (tile instanceof Tile)
+                    currentTile = (Tile) tile;
                 if(currentTile!=null){
                     switch (d){
                         case "Up":
-                            if(currentTile.currentColumn==tempColumn-1 && currentTile.currentRow ==tempRow)
+                            if(currentTile.getCurrentColumn()==tempColumn-1 && currentTile.getCurrentRow() ==tempRow)
                                 changedTile=currentTile;
                             break;
                         case "Down":
-                            if(currentTile.currentColumn==tempColumn+1 && currentTile.currentRow ==tempRow)
+                            if(currentTile.getCurrentColumn()==tempColumn+1 && currentTile.getCurrentRow() ==tempRow)
                                 changedTile=currentTile;
                             break;
                         case "Right":
-                            if(currentTile.currentColumn==tempColumn && currentTile.currentRow ==tempRow+1)
+                            if(currentTile.getCurrentColumn()==tempColumn && currentTile.getCurrentRow() ==tempRow+1)
                                 changedTile=currentTile;
                             break;
                         case "Left":
-                            if(currentTile.currentColumn==tempColumn && currentTile.currentRow ==tempRow-1)
+                            if(currentTile.getCurrentColumn()==tempColumn && currentTile.getCurrentRow() ==tempRow-1)
                                 changedTile=currentTile;
                             break;
                     }
@@ -91,10 +93,9 @@ public class GamePane extends Pane {
                 translate.setDuration(Duration.millis(500));
                 translate.play();
 
-                t.currentRow= changedTile.currentRow;
-                t.currentColumn= changedTile.currentColumn;
-
-                System.out.println(tempX + " "+ tempY);
+                t.setCurrentRow(changedTile.getCurrentRow()) ;
+                t.setCurrentColumn(changedTile.getCurrentColumn());
+                //System.out.println(tempX + " "+ tempY);
                 TranslateTransition translateB = new TranslateTransition();
                 translateB.setToX(tempX);
                 translateB.setToY(tempY);
@@ -102,8 +103,8 @@ public class GamePane extends Pane {
                 translateB.setDuration(Duration.millis(500));
                 translateB.play();
 
-                changedTile.currentRow=tempRow;
-                changedTile.currentColumn=tempColumn;
+                changedTile.setCurrentRow(tempRow);
+                changedTile.setCurrentColumn(tempColumn);
 
             }
 

@@ -1,14 +1,13 @@
-import Tiles.TestTile;
+import Tiles.Tile;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.util.Random;
+import java.io.File;
 
 public class GameScene extends Application {
 
@@ -28,6 +27,15 @@ public class GameScene extends Application {
         pane.getChildren().add(gamePane);
         gamePane.setPadding(new Insets(10,10,10,10));
 
+
+        Io currentLevel =new Io(new File("input/CSE1242_spring2022_project_level1.txt"));
+        currentLevel.decodeInput();
+        System.out.println(currentLevel.getList().length);
+        for(Tile tile:currentLevel.getList()){
+            gamePane.add(tile);
+        }
+
+        /*
 
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
@@ -52,6 +60,8 @@ public class GameScene extends Application {
 
             }
         }
+        */
+
 
         borderPane.setCenter(pane);
 

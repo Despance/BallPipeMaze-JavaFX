@@ -6,19 +6,21 @@ import java.util.*;
 // burda yaptığım input dosyasını alıp ArrayListe tile locationını atamak
 public class Io {
 
-    private ArrayList<Tile> list = new ArrayList<>(16);
+    private Tile[] list =new Tile[16];
     private File file;
     Scanner input;
 
     Tile tile;
 
+
+
     public Io(){
     }
     public Io(File file){
         this.file = file;
-        DecodeInput();
+        decodeInput();
     }
-    public void DecodeInput(){
+    public void decodeInput(){
        try {
            if (file.exists()) {
                input = new Scanner(file);
@@ -84,11 +86,11 @@ public class Io {
 
     }
 
-    public ArrayList<Tile> getList() {
+    public Tile[] getList() {
         return list;
     }
 
-    public void setList(ArrayList<Tile> list) {
+    public void setList(Tile[] list) {
         this.list = list;
     }
 

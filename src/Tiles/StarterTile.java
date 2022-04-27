@@ -1,5 +1,6 @@
 package Tiles;
 
+
 public class StarterTile extends Tile {
 
 
@@ -8,7 +9,13 @@ public class StarterTile extends Tile {
         super(currentRow, currentColumn, "/Starter.png");
         if (type.equals("Vertical")) {
             super.rotateTile(90);
+            enumDirection = Direction.DOWN;
         }
+        else
+            enumDirection = Direction.UP;
+
+
+
     }
 
 

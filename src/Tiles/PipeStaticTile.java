@@ -4,7 +4,8 @@ public class PipeStaticTile extends Tile{
 
     public PipeStaticTile(int currentRow, int currentColumn,String type) {
         super(currentRow, currentColumn, "/PipeStatic.png");
-        if (type.equals("Vertical")) {
+        Direction enumDireciton;
+        if (type.equals("Horizontal")) {
             super.rotateTile(90);
         }
 
