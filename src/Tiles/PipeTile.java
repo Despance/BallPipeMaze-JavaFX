@@ -8,6 +8,7 @@ public class PipeTile extends Tile implements Movable{
         Direction enumDirection;
         if (type.equals("Horizontal")) {
             super.rotateTile(90);
+            enumDirection = Direction.LEFT_RIGHT;
         }
         else
             enumDirection = Direction.UP_DOWN;

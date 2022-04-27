@@ -14,6 +14,18 @@ public class Tile extends ImageView {
 
     private int size;
 
+    enum Direction {
+        UP,
+        DOWN,
+        RIGHT,
+        LEFT,
+        UP_DOWN,
+        LEFT_RIGHT,
+        UP_RIGHT,
+        UP_LEFT,
+        DOWN_RIGHT,
+        DOWN_LEFT
+    }
 
     public Tile(int currentRow,int currentColumn,String url){
         super(url);

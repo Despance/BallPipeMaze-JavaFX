@@ -7,7 +7,10 @@ public class PipeStaticTile extends Tile{
         Direction enumDireciton;
         if (type.equals("Horizontal")) {
             super.rotateTile(90);
+            enumDireciton = Direction.LEFT_RIGHT;
         }
+        else
+            enumDireciton = Direction.UP_DOWN;
 
     }
 }
