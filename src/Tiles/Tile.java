@@ -35,6 +35,8 @@ public class Tile extends ImageView {
 
     }
 
+
+
     public String checkDirection(){
         double degree = -Math.atan2(finishY-startY, finishX- startX);
 

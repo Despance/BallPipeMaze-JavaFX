@@ -30,6 +30,7 @@ public class GamePane extends Pane {
 
     public void add(Tile e){
         super.getChildren().add(e);
+        //e.setPreserveRatio(true);
         e.setFitWidth(cellSize);
         e.setFitHeight(cellSize);
         e.setTranslateX(currentRow*(cellSize+spacing));
@@ -96,7 +97,7 @@ public class GamePane extends Pane {
                     double tY = changedTile.getTranslateY();
 
                     isMoving= true;
-
+                    t.toFront();
                     TranslateTransition translate = new TranslateTransition();
                     translate.setToX(tX);
                     translate.setToY(tY);
