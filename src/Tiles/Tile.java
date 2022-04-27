@@ -1,8 +1,15 @@
 package Tiles;
 
+import javafx.event.EventHandler;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+
+
 
 public class Tile extends ImageView {
+    enum Direction{
+        UP,DOWN,RIGHT,LEFT,VERTICAL,HORIZONTAL,UP_RIGHT,DOWN_RIGHT,UP_LEFT,DOWN_lEFT
+    }
 
     private int currentRow;
     private int currentColumn;
@@ -14,18 +21,10 @@ public class Tile extends ImageView {
 
     private int size;
 
-    enum Direction {
-        UP,
-        DOWN,
-        RIGHT,
-        LEFT,
-        UP_DOWN,
-        LEFT_RIGHT,
-        UP_RIGHT,
-        UP_LEFT,
-        DOWN_RIGHT,
-        DOWN_LEFT
-    }
+    private Direction enumDirection;
+
+
+
 
     public Tile(int currentRow,int currentColumn,String url){
         super(url);
@@ -34,18 +33,20 @@ public class Tile extends ImageView {
         super.setFitWidth(size);
         super.setFitHeight(size);
 
-            }
+    }
 
     public String checkDirection(){
-        double degree = Math.atan2(finishY-startY, finishX- startX);
+        double degree = -Math.atan2(finishY-startY, finishX- startX);
 
-        if(degree< Math.PI/4 && degree>-Math.PI/4){
+        System.out.println(degree);
+
+        if(degree< Math.PI/4 &&degree > 0|| degree>-Math.PI/4 && degree<0){
             System.out.println("Right");
             return "Right";
-        } else if (degree< Math.PI*3/4 && degree>Math.PI/4) {
+        } else if (degree> -Math.PI*3/4 && degree<-Math.PI/4) {
             System.out.println("Down");
             return "Down";
-        }else if(degree>-Math.PI*3/4 && degree<-Math.PI/4){
+        }else if(degree<Math.PI*3/4 && degree>Math.PI/4){
             System.out.println("Up");
             return "Up";
         }else if(degree< Math.PI*3/4 || degree>-Math.PI*3/4){
@@ -56,6 +57,11 @@ public class Tile extends ImageView {
         }
 
     }
+
+
+
+
+
 
     public void rotateTile(int degree){
         this.setRotate(degree);
@@ -116,5 +122,13 @@ public class Tile extends ImageView {
 
     public void setSize(int size) {
         this.size = size;
+    }
+
+    public Direction getEnumDirection() {
+        return enumDirection;
+    }
+
+    public void setEnumDirection(Direction enumDirection) {
+        this.enumDirection = enumDirection;
     }
 }

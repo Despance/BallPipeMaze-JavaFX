@@ -1,9 +1,11 @@
 import Tiles.Tile;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -32,8 +34,10 @@ public class GameScene extends Application {
 
         Io currentLevel =new Io(new File("input/CSE1242_spring2022_project_level1.txt"));
         currentLevel.decodeInput();
-        System.out.println(currentLevel.getList().length);
+
         for(Tile tile:currentLevel.getList()){
+            tile.setOnMousePressed(new onMousePressedHandler(tile));
+            tile.setOnMouseReleased(new onMouseReleasedHandler(tile,gamePane));
             gamePane.add(tile);
         }
 
@@ -91,6 +95,54 @@ public class GameScene extends Application {
         Scene scene = new Scene(borderPane,426  ,454);
         primaryStage.setScene(scene);
         primaryStage.show();
+
+
+
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+}
+
+class onMousePressedHandler implements EventHandler<MouseEvent> {
+    Tile tile;
+    onMousePressedHandler(Tile tile){
+        this.tile = tile;
+
+    }
+    @Override
+    public void handle(MouseEvent event) {
+        tile.setStartX(event.getX());
+        tile.setStartY(event.getY());
+    }
+}
+
+
+
+class onMouseReleasedHandler  implements EventHandler<MouseEvent> {
+
+    Tile tile;
+    GamePane gamePane;
+    onMouseReleasedHandler(Tile tile,GamePane gamePane){
+        this.tile = tile;
+        this.gamePane = gamePane;
+    }
+
+
+    @Override
+    public void handle(MouseEvent event) {
+        tile.setFinishX(event.getX());
+        tile.setFinishY(event.getY());
+        gamePane.changeTiles(tile,tile.checkDirection());
 
     }
 }

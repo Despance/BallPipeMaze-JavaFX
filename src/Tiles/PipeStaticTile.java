@@ -4,13 +4,12 @@ public class PipeStaticTile extends Tile{
 
     public PipeStaticTile(int currentRow, int currentColumn,String type) {
         super(currentRow, currentColumn, "/PipeStatic.png");
-        Direction enumDireciton;
+
         if (type.equals("Horizontal")) {
-            super.rotateTile(90);
-            enumDireciton = Direction.LEFT_RIGHT;
+            setEnumDirection(Direction.HORIZONTAL);
         }
         else
-            enumDireciton = Direction.UP_DOWN;
+            setEnumDirection(Direction.VERTICAL);
 
     }
 }

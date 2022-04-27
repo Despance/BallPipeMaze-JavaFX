@@ -5,13 +5,12 @@ public class PipeTile extends Tile implements Movable{
 
     public PipeTile(int currentRow, int currentColumn, String type) {
         super(currentRow, currentColumn,"/Pipe.png");
-        Direction enumDirection;
+
         if (type.equals("Horizontal")) {
-            super.rotateTile(90);
-            enumDirection = Direction.LEFT_RIGHT;
+            setEnumDirection(Direction.HORIZONTAL);
         }
         else
-            enumDirection = Direction.UP_DOWN;
+            setEnumDirection(Direction.VERTICAL);
 
 
 

@@ -11,16 +11,5 @@ public class EmptyTile extends Tile implements Movable{
 
     }
 
-    /*
-    @Override
-    public void onClicked() {
 
-    }
-
-    @Override
-    public void onRelease() {
-
-    }
-
-     */
 }
