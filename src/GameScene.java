@@ -40,6 +40,7 @@ public class GameScene extends Application {
             tile.setOnMouseReleased(new onMouseReleasedHandler(tile,gamePane));
             gamePane.add(tile);
         }
+        gamePane.addBall(new Ball(0,0,20));
 
         /*
 
@@ -73,7 +74,11 @@ public class GameScene extends Application {
 
         HBox hBox = new HBox(15);
         hBox.setAlignment(Pos.CENTER);
-        hBox.getChildren().add(new Button("Check"));
+        Button checkButton = new Button("Check");
+        checkButton.setOnAction(event -> {
+            gamePane.drawLine();
+        });
+        hBox.getChildren().add(checkButton);
         hBox.getChildren().add(new Button("Next"));
         borderPane.setBottom(hBox);
 

@@ -7,7 +7,7 @@ import javafx.scene.input.MouseEvent;
 
 
 public class Tile extends ImageView {
-    enum Direction{
+    public enum Direction{
         UP,DOWN,RIGHT,LEFT,VERTICAL,HORIZONTAL,UP_RIGHT,DOWN_RIGHT,UP_LEFT,DOWN_lEFT
     }
 

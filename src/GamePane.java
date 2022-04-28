@@ -1,9 +1,14 @@
 import Tiles.FreeTile;
 import Tiles.Movable;
+import Tiles.StarterTile;
 import Tiles.Tile;
 import javafx.animation.TranslateTransition;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.ArcTo;
+import javafx.scene.shape.LineTo;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
 import javafx.util.Duration;
 
 public class GamePane extends Pane {
@@ -17,6 +22,8 @@ public class GamePane extends Pane {
     int currentRow;
     int currentColumn;
     int spacing;
+
+    Ball ball;
 
 
     public GamePane(int rowCount,int columnCount,int cellSize,int spacing){
@@ -49,6 +56,103 @@ public class GamePane extends Pane {
 
     }
 
+    public void addBall( Ball ball){
+        this.ball = ball;
+        super.getChildren().add(ball);
+        ball.toFront();
+        StarterTile starterTile = null;
+        for (Node tile :getChildren()){
+            if (tile instanceof StarterTile ){
+                starterTile = (StarterTile) tile;
+                break;
+            }
+
+        }
+        if (starterTile!=null){
+
+            ball.setTranslateX(starterTile.getTranslateX()+50);
+            ball.setTranslateY(starterTile.getTranslateY()+50);
+        }
+
+    }
+
+    public void drawLine(){
+        Path path = makeLine();
+
+        getChildren().add(path);
+        path.toFront();
+        path.setTranslateX(ball.getTranslateX());
+        path.setTranslateY(ball.getTranslateY());
+    }
+
+    public Path makeLine(){
+        Path path = new Path();
+        path.getElements().add(new MoveTo(0,0));
+
+        Tile currentTile= null;
+        boolean canMove = true;
+        for (Node tile :getChildren()){
+            if (tile instanceof StarterTile){
+                currentTile = (Tile) tile;
+                break;
+            }
+        }
+
+        Tile nextTile = null;
+
+            if(currentTile!= null){
+
+
+                int row = currentTile.getCurrentRow();
+                int column = currentTile.getCurrentColumn();
+
+
+                 Tile.Direction nextDirection = currentTile.getEnumDirection();
+                 switch (nextDirection){
+                     case DOWN:
+                         column++;
+                         break;
+                 }
+
+
+
+                for (Node tilex : getChildren()){
+
+                    if(tilex instanceof Tile){
+                        Tile tile  = (Tile) tilex;
+                        if(tile.getCurrentRow() == row && tile.getCurrentColumn() == column){
+                            nextTile = tile;
+
+                            break;
+                        }
+                    }
+
+                }
+
+                if(nextTile!=null){
+                    System.out.println("girdi");
+                    System.out.println(nextTile.getCurrentRow()+" "+nextTile.getCurrentColumn());
+                    System.out.println(nextTile.getEnumDirection());
+                    if(nextTile.getEnumDirection() == Tile.Direction.VERTICAL){
+                        System.out.println("girdi");
+                        path.getElements().add(new LineTo(100*nextTile.getCurrentColumn(),100*nextTile.getCurrentRow()));
+                    }
+                }else{
+                    canMove= false;
+                }
+
+
+
+
+            }
+
+
+        return path;
+
+    }
+
+
+
     public void changeTiles(Tile t,String d){
 
 
@@ -61,8 +165,10 @@ public class GamePane extends Pane {
                 Tile changedTile = null;
                 for(Node tile : getChildren()){
                     Tile currentTile = null;
-                    if (tile instanceof FreeTile)
+                    if (tile instanceof FreeTile){
                         currentTile = (Tile) tile;
+                    }
+
 
                     if(currentTile!=null){
 
