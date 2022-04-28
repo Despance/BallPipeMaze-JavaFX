@@ -9,10 +9,10 @@ public class PipeStaticTile extends Tile{
 
         if (type.equals("Horizontal")) {
             super.setImage(new Image("/StaticPipeHorizontal.png"));
-            setEnumDirection(Direction.HORIZONTAL);
+            setDirection(type);
         }
         else
-            setEnumDirection(Direction.VERTICAL);
+            setDirection(type);
 
     }
 }

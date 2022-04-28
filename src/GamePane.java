@@ -107,9 +107,9 @@ public class GamePane extends Pane {
                 int column = currentTile.getCurrentColumn();
 
 
-                 Tile.Direction nextDirection = currentTile.getEnumDirection();
+                 String nextDirection = currentTile.getDirection();
                  switch (nextDirection){
-                     case DOWN:
+                     case "DOWN":
                          column++;
                          break;
                  }
@@ -132,8 +132,8 @@ public class GamePane extends Pane {
                 if(nextTile!=null){
                     System.out.println("girdi");
                     System.out.println(nextTile.getCurrentRow()+" "+nextTile.getCurrentColumn());
-                    System.out.println(nextTile.getEnumDirection());
-                    if(nextTile.getEnumDirection() == Tile.Direction.VERTICAL){
+                    System.out.println(nextTile.getDirection());
+                    if(nextTile.getDirection().equals("Vertical")){
                         System.out.println("girdi");
                         path.getElements().add(new LineTo(100*nextTile.getCurrentColumn(),100*nextTile.getCurrentRow()));
                     }

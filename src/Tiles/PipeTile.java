@@ -7,15 +7,15 @@ public class PipeTile extends Tile implements Movable{
 
     public PipeTile(int currentRow, int currentColumn, String type) {
           super(currentRow, currentColumn,"/PipeVertical.png" );
-        // super(currentRow, currentColumn,"/Pipe.png");
 
         if (type.equals("Horizontal")) {
-            setEnumDirection(Direction.HORIZONTAL);
+            setDirection(type);
             super.setImage(new Image("/PipeHorizontal.png"));
             System.out.println("Horizontal");
         }
         else {
-            setEnumDirection(Direction.VERTICAL);
+            setDirection(type);
+
             System.out.println("Vertical");
         }
 

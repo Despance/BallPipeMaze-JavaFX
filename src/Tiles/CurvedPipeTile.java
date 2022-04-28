@@ -11,21 +11,21 @@ public class CurvedPipeTile extends Tile implements Movable{
             case "00":
 
                 super.setImage(new Image("/CurvedPipe00.png"));
-                setEnumDirection(Direction.UP_LEFT);
+                setDirection(type);
                 break;
             case "01":
 
                 super.setImage(new Image("/CurvedPipe01.png"));
-                setEnumDirection(Direction.UP_RIGHT);
+                setDirection(type);
                 break;
             case "10":
 
                 super.setImage(new Image("/CurvedPipe10.png"));
-                setEnumDirection(Direction.DOWN_RIGHT);
+                setDirection(type);
                 break;
             case "11":
 
-                setEnumDirection(Direction.DOWN_lEFT);
+                setDirection(type);
                 break;
 
         }

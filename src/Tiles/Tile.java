@@ -7,9 +7,7 @@ import javafx.scene.input.MouseEvent;
 
 
 public class Tile extends ImageView {
-    public enum Direction{
-        UP,DOWN,RIGHT,LEFT,VERTICAL,HORIZONTAL,UP_RIGHT,DOWN_RIGHT,UP_LEFT,DOWN_lEFT
-    }
+
 
     private int currentRow;
     private int currentColumn;
@@ -21,9 +19,9 @@ public class Tile extends ImageView {
 
     private int size;
 
-    private Direction enumDirection;
 
 
+    private String direction;
 
 
     public Tile(int currentRow,int currentColumn,String url){
@@ -126,11 +124,11 @@ public class Tile extends ImageView {
         this.size = size;
     }
 
-    public Direction getEnumDirection() {
-        return enumDirection;
+    public String getDirection() {
+        return direction;
     }
 
-    public void setEnumDirection(Direction enumDirection) {
-        this.enumDirection = enumDirection;
+    public void setDirection(String direction) {
+        this.direction = direction;
     }
 }

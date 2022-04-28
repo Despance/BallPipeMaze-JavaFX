@@ -1,15 +1,19 @@
 package Tiles;
 
+import javafx.scene.image.Image;
+
 public class EndTile extends Tile{
 
 
     public EndTile(int currentRow, int currentColumn,String type) {
-        super(currentRow, currentColumn, "/End.png");
+        super(currentRow, currentColumn, "/EndHorizontal.png");
 
         if (type.equals("Vertical")) {
-            setEnumDirection(Direction.LEFT);
+            super.setImage(new Image("/EndVertical.png"));
+            setDirection(type);
         }
         else
-            setEnumDirection(Direction.DOWN);
+
+            setDirection(type);
     }
 }
