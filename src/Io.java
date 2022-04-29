@@ -45,35 +45,35 @@ public class Io {
                index = Integer.parseInt(tempStringArray[0])-1;
 
 
-               switch (tempStringArray[1]){
+               switch (tempStringArray[1].toLowerCase()){
 
-                   case "Starter" :
-                       list[index]= new StarterTile(index/4,index%4,tempStringArray[2]);
+                   case "starter" :
+                       list[index]= new StarterTile(index/4,index%4,tempStringArray[2].toLowerCase());
                        break;
 
-                   case "Empty" :
-                       if(tempStringArray[2].equals("Free"))
+                   case "empty" :
+                       if(tempStringArray[2].toLowerCase().equals("free"))
                            list[index]= new FreeTile(index/4,index%4);
                        else
                            list[index]= new EmptyTile(index/4,index%4);
                        break;
 
-                   case "Pipe" :
-                       if(tempStringArray[2].equals("Horizontal") || tempStringArray[2].equals("Vertical"))
-                           list[index]= new PipeTile(index/4,index%4,tempStringArray[2]);
+                   case "pipe" :
+                       if(tempStringArray[2].toLowerCase().equals("horizontal") || tempStringArray[2].toLowerCase().equals("vertical"))
+                           list[index]= new PipeTile(index/4,index%4,tempStringArray[2].toLowerCase());
                        else
-                           list[index]=  new CurvedPipeTile(index/4,index%4,tempStringArray[2]);
+                           list[index]=  new CurvedPipeTile(index/4,index%4,tempStringArray[2].toLowerCase());
                        break;
 
-                   case "End" :
-                       list[index]= new EndTile(index/4,index%4,tempStringArray[2]);
+                   case "end" :
+                       list[index]= new EndTile(index/4,index%4,tempStringArray[2].toLowerCase());
                        break;
 
-                   case "PipeStatic" :
-                       if(tempStringArray[2].equals("Horizontal") || tempStringArray[2].equals("Vertical"))
-                           list[index]=  new PipeStaticTile(index/4,index%4,tempStringArray[2]);
+                   case "pipestatic" :
+                       if(tempStringArray[2].toLowerCase().equals("horizontal") || tempStringArray[2].toLowerCase().equals("vertical"))
+                           list[index]=  new PipeStaticTile(index/4,index%4,tempStringArray[2].toLowerCase());
                        else
-                           list[index]= new CurvedPipeStaticTile(index/4,index%4,tempStringArray[2]);
+                           list[index]= new CurvedPipeStaticTile(index/4,index%4,tempStringArray[2].toLowerCase());
                        break;
 
                }

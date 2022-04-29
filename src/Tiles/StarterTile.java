@@ -9,7 +9,7 @@ public class StarterTile extends Tile {
 
     public StarterTile(int currentRow, int currentColumn,String type) {
         super(currentRow, currentColumn, "/StarterHorizontal.png");
-        if (type.equals("Vertical")) {
+        if (type.equals("vertical")) {
             super.setImage(new Image("/StarterVertical.png"));
             setDirection(type);
 

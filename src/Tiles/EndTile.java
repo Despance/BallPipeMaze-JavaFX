@@ -8,7 +8,7 @@ public class EndTile extends Tile{
     public EndTile(int currentRow, int currentColumn,String type) {
         super(currentRow, currentColumn, "/EndHorizontal.png");
 
-        if (type.equals("Vertical")) {
+        if (type.equals("vertical")) {
             super.setImage(new Image("/EndVertical.png"));
             setDirection(type);
         }
