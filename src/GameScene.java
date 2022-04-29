@@ -12,6 +12,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.util.ArrayList;
 
 public class GameScene extends Application {
 
@@ -19,6 +20,12 @@ public class GameScene extends Application {
         launch(args);
     }
 
+File assets = new File("input");
+ArrayList<String> levelList = new ArrayList<>();
+    Io currentLevel;
+int currentLevelIndex = 0;
+    GamePane gamePane;
+    Scene scene;
 
 
     @Override
@@ -27,13 +34,22 @@ public class GameScene extends Application {
 
         BorderPane borderPane = new BorderPane();
         StackPane pane = new StackPane();
-        GamePane gamePane = new GamePane(4,4,100,2);
+        gamePane = new GamePane(4,4,100,2);
         pane.getChildren().add(gamePane);
         gamePane.setPadding(new Insets(10,10,10,10));
 
 
-        Io currentLevel =new Io(new File("input/CSE1242_spring2022_project_level1.txt"));
-        currentLevel.decodeInput();
+
+        for (File file : assets.listFiles()) {
+            if (!file.isDirectory()) {
+                levelList.add(file.getPath());
+                System.out.println(file.getPath());
+            }
+        }
+
+            currentLevel = new Io(new File(levelList.get(currentLevelIndex)));
+            currentLevel.decodeInput();
+            currentLevelIndex++;
 
         for(Tile tile:currentLevel.getList()){
             tile.setOnMousePressed(new onMousePressedHandler(tile));
@@ -79,34 +95,20 @@ public class GameScene extends Application {
             gamePane.drawLine();
         });
         hBox.getChildren().add(checkButton);
-        hBox.getChildren().add(new Button("Next"));
+        Button nextButton = new Button("Next");
+        nextButton.setOnAction(event -> {
+            start(primaryStage);
+
+        });
+        hBox.getChildren().add(nextButton);
+
         borderPane.setBottom(hBox);
 
 
+        scene = new Scene(borderPane,426  ,454);
 
-        /*
-        borderPane.setBottom(new Button("click me"));
-
-        borderPane.setLeft(new Button("click me"));
-
-        borderPane.setRight(new Button("click me"));
-
-        borderPane.setTop(new Button("click me"));
-        */
-
-
-
-
-        Scene scene = new Scene(borderPane,426  ,454);
         primaryStage.setScene(scene);
         primaryStage.show();
-
-
-
-
-
-
-
 
 
     }
