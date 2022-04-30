@@ -4,7 +4,7 @@ import javafx.scene.shape.Circle;
 
 public class Ball extends Circle {
 
-
+    private String direction;
 
     public Ball(double xPos,double yPos,double radius){
         super(xPos,yPos,radius);
@@ -13,7 +13,11 @@ public class Ball extends Circle {
         super.setFill(Color.AQUA);
     }
 
+    public String getDirection() {
+        return direction;
+    }
 
-
-
+    public void setDirection(String direction) {
+        this.direction = direction;
+    }
 }

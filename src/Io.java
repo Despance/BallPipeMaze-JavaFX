@@ -6,7 +6,7 @@ import java.util.*;
 // burda yaptığım input dosyasını alıp ArrayListe tile locationını atamak
 public class Io {
 
-    private Tile[] list =new Tile[16];
+    private Tile[] list;
     private File file;
     Scanner input;
 
@@ -18,7 +18,7 @@ public class Io {
     }
     public Io(File file){
         this.file = file;
-        decodeInput();
+
     }
     public void decodeInput(){
        try {
@@ -32,7 +32,7 @@ public class Io {
            System.out.println(ex);
            System.exit(1);
        }
-
+            list = new Tile[16];
            String[] tempStringArray;
            int index;
 
@@ -44,8 +44,7 @@ public class Io {
                tempStringArray = tempS.split(",");
                index = Integer.parseInt(tempStringArray[0])-1;
 
-
-               switch (tempStringArray[1].toLowerCase()){
+                switch (tempStringArray[1].toLowerCase()){
 
                    case "starter" :
                        list[index]= new StarterTile(index/4,index%4,tempStringArray[2].toLowerCase());

@@ -130,5 +130,6 @@ public class Tile extends ImageView {
 
     public void setDirection(String direction) {
         this.direction = direction;
+        System.out.println("direction set to "+direction);
     }
 }

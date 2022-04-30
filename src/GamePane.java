@@ -1,7 +1,4 @@
-import Tiles.FreeTile;
-import Tiles.Movable;
-import Tiles.StarterTile;
-import Tiles.Tile;
+import Tiles.*;
 import javafx.animation.TranslateTransition;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
@@ -46,7 +43,7 @@ public class GamePane extends Pane {
         e.setCurrentRow(currentRow);
         e.setCurrentRow(currentColumn);
 
-        System.out.println(currentRow+ " "+ currentColumn);
+        System.out.println(currentRow+ " "+ currentColumn+" "+e.getClass());
 
         currentRow++;
         if(currentRow==rowCount){
@@ -87,64 +84,177 @@ public class GamePane extends Pane {
 
     public Path makeLine(){
         Path path = new Path();
-        path.getElements().add(new MoveTo(0,0));
 
-        Tile currentTile= null;
+
         boolean canMove = true;
+        //Get current tile
+        Tile currentTile= null;
+
         for (Node tile :getChildren()){
             if (tile instanceof StarterTile){
                 currentTile = (Tile) tile;
+                path.getElements().add(new MoveTo(100*currentTile.getCurrentColumn(),100*currentTile.getCurrentRow()));
+
+                if (currentTile.getDirection().equals("vertical")){
+                    ball.setDirection("down");
+                    path.getElements().add(new LineTo(100*currentTile.getCurrentColumn(),100*currentTile.getCurrentRow()+50));
+                }else{
+                    ball.setDirection("left");
+                    path.getElements().add(new LineTo(100*currentTile.getCurrentColumn()-50,100*currentTile.getCurrentRow()));
+                }
+
+
                 break;
             }
         }
 
+        //Find the next tile
+
+
+        do {
+
+
+
+
         Tile nextTile = null;
+        if(currentTile!= null){
 
-            if(currentTile!= null){
-
-
-                int row = currentTile.getCurrentRow();
-                int column = currentTile.getCurrentColumn();
+            int row = currentTile.getCurrentRow();
+            int column = currentTile.getCurrentColumn();
 
 
-                 String nextDirection = currentTile.getDirection();
-                 switch (nextDirection){
-                     case "DOWN":
-                         column++;
-                         break;
-                 }
+            String nextDirection = currentTile.getDirection();
+
+            switch (ball.getDirection()){
+                case "down":
+                    row++;
+                    break;
+                case "up":
+                    row--;
+                    break;
+                case "right":
+                    column++;
+                    break;
+                case "left":
+                    column--;
+                    break;
+            }
 
 
 
-                for (Node tilex : getChildren()){
+            for (Node tilex : getChildren()){
+                Tile tile = null;
+                if (tilex instanceof Tile)
+                    tile = (Tile)tilex;
+                if (tile != null){
+                    if (tile.getCurrentRow() == row && tile.getCurrentColumn() == column){
+                        nextTile = tile;
 
-                    if(tilex instanceof Tile){
-                        Tile tile  = (Tile) tilex;
-                        if(tile.getCurrentRow() == row && tile.getCurrentColumn() == column){
-                            nextTile = tile;
 
-                            break;
-                        }
                     }
-
                 }
-
-                if(nextTile!=null){
-                    System.out.println("girdi");
-                    System.out.println(nextTile.getCurrentRow()+" "+nextTile.getCurrentColumn());
-                    System.out.println(nextTile.getDirection());
-                    if(nextTile.getDirection().equals("Vertical")){
-                        System.out.println("girdi");
-                        path.getElements().add(new LineTo(100*nextTile.getCurrentColumn(),100*nextTile.getCurrentRow()));
-                    }
-                }else{
-                    canMove= false;
-                }
-
-
 
 
             }
+            if(nextTile!=null){
+
+
+                if(ball.getDirection().equals("up")||ball.getDirection().equals("down"))
+                {
+                    if (nextTile.getDirection().equals("vertical")){
+                        path.getElements().add(new LineTo(100*nextTile.getCurrentColumn(),100*nextTile.getCurrentRow()+50));
+                        System.out.println("line created");
+                    }else {
+                        switch (nextTile.getDirection()){
+                            case "00":
+                                if (ball.getDirection().equals("down")){
+                                    ball.setDirection("left");
+                                }
+
+
+                                break;
+                            case "01":
+
+                                if (ball.getDirection().equals("down")){
+                                    ball.setDirection("right");
+                                }
+
+
+
+
+                                break;
+                            case "10":
+                                if (ball.getDirection().equals("up")){
+                                    ball.setDirection("left");
+                                }
+
+                                break;
+                            case "11":
+                                if (ball.getDirection().equals("up")){
+                                    ball.setDirection("right");
+                                }
+
+                                break;
+                        }
+                    }
+
+
+                }else if(ball.getDirection().equals("right")||ball.getDirection().equals("left")){
+                    System.out.println("girdi rightLeft");
+                    if (nextTile.getDirection().equals("horizontal")){
+                        path.getElements().add(new LineTo(100*nextTile.getCurrentColumn(),100*nextTile.getCurrentRow()));
+                        System.out.println("line created");
+                    }else{
+                        switch (nextTile.getDirection()){
+                            case "00":
+                                if (ball.getDirection().equals("right")){
+                                    ball.setDirection("up");
+                                }
+
+
+                                break;
+                            case "01":
+
+                                if (ball.getDirection().equals("left")){
+                                    ball.setDirection("up");
+                                }
+
+                                break;
+                            case "10":
+                                if (ball.getDirection().equals("right")){
+                                    ball.setDirection("down");
+                                }
+
+                                break;
+                            case "11":
+                                if (ball.getDirection().equals("left")){
+                                    ball.setDirection("down");
+                                }
+
+                                break;
+                        }
+                    }
+                }
+                System.out.println(currentTile.getCurrentRow()+" "+currentTile.getCurrentColumn()+" drawed " +currentTile.getClass());
+
+                if (nextTile instanceof EndTile){
+                    canMove = false;
+                    System.out.println("finish");
+                }else{
+                    currentTile = nextTile;
+                }
+
+
+
+
+            }else{
+                canMove = false;
+            }
+        }
+
+
+
+        }while (canMove);
 
 
         return path;
