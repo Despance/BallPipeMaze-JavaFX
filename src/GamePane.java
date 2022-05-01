@@ -1,11 +1,9 @@
 import Tiles.*;
+import javafx.animation.PathTransition;
 import javafx.animation.TranslateTransition;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.ArcTo;
-import javafx.scene.shape.LineTo;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
+import javafx.scene.shape.*;
 import javafx.util.Duration;
 
 public class GamePane extends Pane {
@@ -78,8 +76,7 @@ public class GamePane extends Pane {
 
         getChildren().add(path);
         path.toFront();
-        path.setTranslateX(ball.getTranslateX());
-        path.setTranslateY(ball.getTranslateY());
+
     }
 
     public Path makeLine(){
@@ -93,14 +90,14 @@ public class GamePane extends Pane {
         for (Node tile :getChildren()){
             if (tile instanceof StarterTile){
                 currentTile = (Tile) tile;
-                path.getElements().add(new MoveTo(100*currentTile.getCurrentColumn(),100*currentTile.getCurrentRow()));
+                path.getElements().add(new MoveTo(100*currentTile.getCurrentColumn()+ball.getTranslateX(),100*currentTile.getCurrentRow()+ ball.getTranslateY()));
 
                 if (currentTile.getDirection().equals("vertical")){
                     ball.setDirection("down");
-                    path.getElements().add(new LineTo(100*currentTile.getCurrentColumn(),100*currentTile.getCurrentRow()+50));
+                    path.getElements().add(new LineTo(100*currentTile.getCurrentColumn()+ball.getTranslateX(),100*currentTile.getCurrentRow()+50+ball.getTranslateY()));
                 }else{
                     ball.setDirection("left");
-                    path.getElements().add(new LineTo(100*currentTile.getCurrentColumn()-50,100*currentTile.getCurrentRow()));
+                    path.getElements().add(new LineTo(100*currentTile.getCurrentColumn()-50+ball.getTranslateX(),100*currentTile.getCurrentRow()+ball.getTranslateY()));
                 }
 
 
@@ -114,8 +111,6 @@ public class GamePane extends Pane {
         do {
 
 
-
-
         Tile nextTile = null;
         if(currentTile!= null){
 
@@ -123,7 +118,6 @@ public class GamePane extends Pane {
             int column = currentTile.getCurrentColumn();
 
 
-            String nextDirection = currentTile.getDirection();
 
             switch (ball.getDirection()){
                 case "down":
@@ -162,13 +156,26 @@ public class GamePane extends Pane {
                 if(ball.getDirection().equals("up")||ball.getDirection().equals("down"))
                 {
                     if (nextTile.getDirection().equals("vertical")){
-                        path.getElements().add(new LineTo(100*nextTile.getCurrentColumn(),100*nextTile.getCurrentRow()+50));
-                        System.out.println("line created");
+                        if (nextTile instanceof EndTile)
+                            path.getElements().add(new LineTo(100*nextTile.getCurrentColumn()+ball.getTranslateX(),100*nextTile.getCurrentRow()+ball.getTranslateY()));
+                        else
+                            path.getElements().add(new LineTo(100*nextTile.getCurrentColumn()+ball.getTranslateX(),100*nextTile.getCurrentRow()+50+ball.getTranslateY()));
+
                     }else {
+                        ArcTo arcTo = new ArcTo();
                         switch (nextTile.getDirection()){
                             case "00":
                                 if (ball.getDirection().equals("down")){
                                     ball.setDirection("left");
+                                    arcTo.setX(nextTile.getCurrentColumn()*100-50+ball.getTranslateX());
+                                    arcTo.setY(nextTile.getCurrentRow()*100+ball.getTranslateY());
+                                    arcTo.setXAxisRotation(50);
+                                    arcTo.setRadiusX(50);
+                                    arcTo.setRadiusY(50);
+                                    arcTo.setSweepFlag(false);
+                                    arcTo.setLargeArcFlag(false);
+
+
                                 }
 
 
@@ -177,6 +184,17 @@ public class GamePane extends Pane {
 
                                 if (ball.getDirection().equals("down")){
                                     ball.setDirection("right");
+
+                                    arcTo.setX(nextTile.getCurrentColumn()*100+50+ball.getTranslateX());
+                                    arcTo.setY(nextTile.getCurrentRow()*100+ball.getTranslateY());
+                                    arcTo.setXAxisRotation(50);
+                                    arcTo.setRadiusX(50);
+                                    arcTo.setRadiusY(50);
+                                    arcTo.setSweepFlag(false);
+                                    arcTo.setLargeArcFlag(false);
+
+
+
                                 }
 
 
@@ -186,6 +204,13 @@ public class GamePane extends Pane {
                             case "10":
                                 if (ball.getDirection().equals("up")){
                                     ball.setDirection("left");
+                                    arcTo.setX(nextTile.getCurrentColumn()*100+50+ball.getTranslateX());
+                                    arcTo.setY(nextTile.getCurrentRow()*100+ball.getTranslateY());
+                                    arcTo.setXAxisRotation(50);
+                                    arcTo.setRadiusX(50);
+                                    arcTo.setRadiusY(50);
+                                    arcTo.setSweepFlag(true);
+                                    arcTo.setLargeArcFlag(false);
                                 }
 
                                 break;
@@ -196,19 +221,32 @@ public class GamePane extends Pane {
 
                                 break;
                         }
+                        path.getElements().add(arcTo);
                     }
 
 
                 }else if(ball.getDirection().equals("right")||ball.getDirection().equals("left")){
-                    System.out.println("girdi rightLeft");
+
                     if (nextTile.getDirection().equals("horizontal")){
-                        path.getElements().add(new LineTo(100*nextTile.getCurrentColumn(),100*nextTile.getCurrentRow()));
-                        System.out.println("line created");
+                        if (nextTile instanceof EndTile)
+                            path.getElements().add(new LineTo(100*nextTile.getCurrentColumn()+ball.getTranslateX(),100*nextTile.getCurrentRow()+ball.getTranslateY()));
+                        else
+                            path.getElements().add(new LineTo(100*nextTile.getCurrentColumn()+ball.getTranslateX()+50,100*nextTile.getCurrentRow()+ball.getTranslateY()));
+
                     }else{
+                        ArcTo arcTo = new ArcTo();
                         switch (nextTile.getDirection()){
                             case "00":
                                 if (ball.getDirection().equals("right")){
                                     ball.setDirection("up");
+                                    arcTo.setX(nextTile.getCurrentColumn()*100+ball.getTranslateX());
+                                    arcTo.setY(nextTile.getCurrentRow()*100-50+ball.getTranslateY());
+                                    arcTo.setXAxisRotation(50);
+                                    arcTo.setRadiusX(50);
+                                    arcTo.setRadiusY(50);
+                                    arcTo.setSweepFlag(false);
+                                    arcTo.setLargeArcFlag(false);
+
                                 }
 
 
@@ -233,13 +271,21 @@ public class GamePane extends Pane {
 
                                 break;
                         }
+                        path.getElements().add(arcTo);
                     }
                 }
                 System.out.println(currentTile.getCurrentRow()+" "+currentTile.getCurrentColumn()+" drawed " +currentTile.getClass());
 
                 if (nextTile instanceof EndTile){
+                    path.toBack();
+                    ball.toFront();
                     canMove = false;
                     System.out.println("finish");
+                    PathTransition pathTransition = new PathTransition();
+                    pathTransition.setPath(path);
+                    pathTransition.setNode(ball);
+                    pathTransition.setDuration(Duration.millis(1000));
+                    pathTransition.play();
                 }else{
                     currentTile = nextTile;
                 }

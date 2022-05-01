@@ -34,7 +34,7 @@ int currentLevelIndex = 0;
 
         BorderPane borderPane = new BorderPane();
         StackPane pane = new StackPane();
-        gamePane = new GamePane(4,4,100,2);
+        gamePane = new GamePane(4,4,100,0);
         pane.getChildren().add(gamePane);
         gamePane.setPadding(new Insets(10,10,10,10));
 
