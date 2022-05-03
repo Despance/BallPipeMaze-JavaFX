@@ -90,14 +90,14 @@ public class GamePane extends Pane {
         for (Node tile :getChildren()){
             if (tile instanceof StarterTile){
                 currentTile = (Tile) tile;
-                path.getElements().add(new MoveTo(100*currentTile.getCurrentColumn()+ball.getTranslateX(),100*currentTile.getCurrentRow()+ ball.getTranslateY()));
+                path.getElements().add(new MoveTo(100*currentTile.getCurrentColumn()+50,100*currentTile.getCurrentRow()+50));
 
                 if (currentTile.getDirection().equals("vertical")){
                     ball.setDirection("down");
-                    path.getElements().add(new LineTo(100*currentTile.getCurrentColumn()+ball.getTranslateX(),100*currentTile.getCurrentRow()+50+ball.getTranslateY()));
+                    path.getElements().add(new LineTo(100*currentTile.getCurrentColumn()+50,100*currentTile.getCurrentRow()+100));
                 }else{
                     ball.setDirection("left");
-                    path.getElements().add(new LineTo(100*currentTile.getCurrentColumn()-50+ball.getTranslateX(),100*currentTile.getCurrentRow()+ball.getTranslateY()));
+                    path.getElements().add(new LineTo(100*currentTile.getCurrentColumn(),100*currentTile.getCurrentRow()+50));
                 }
 
 
@@ -150,25 +150,24 @@ public class GamePane extends Pane {
 
 
             }
-            if(nextTile!=null){
+            if(nextTile!=null && nextTile.getDirection() != null){
 
 
-                if(ball.getDirection().equals("up")||ball.getDirection().equals("down"))
-                {
-                    if (nextTile.getDirection().equals("vertical")){
-                        if (nextTile instanceof EndTile)
-                            path.getElements().add(new LineTo(100*nextTile.getCurrentColumn()+ball.getTranslateX(),100*nextTile.getCurrentRow()+ball.getTranslateY()));
-                        else
-                            path.getElements().add(new LineTo(100*nextTile.getCurrentColumn()+ball.getTranslateX(),100*nextTile.getCurrentRow()+50+ball.getTranslateY()));
+                switch (ball.getDirection()) {
+                    case "up":
+                        if (nextTile.getDirection().equals("vertical")) {
+                            if (nextTile instanceof EndTile)
+                                path.getElements().add(new LineTo(100 * nextTile.getCurrentColumn() + 50, 100 * nextTile.getCurrentRow() + 50));
+                            else
+                                path.getElements().add(new LineTo(100 * nextTile.getCurrentColumn() + 50, 100 * nextTile.getCurrentRow()));
 
-                    }else {
-                        ArcTo arcTo = new ArcTo();
-                        switch (nextTile.getDirection()){
-                            case "00":
-                                if (ball.getDirection().equals("down")){
+                        } else {
+                            ArcTo arcTo = new ArcTo();
+                            switch (nextTile.getDirection()) {
+                                case "10":
                                     ball.setDirection("left");
-                                    arcTo.setX(nextTile.getCurrentColumn()*100-50+ball.getTranslateX());
-                                    arcTo.setY(nextTile.getCurrentRow()*100+ball.getTranslateY());
+                                    arcTo.setX(nextTile.getCurrentColumn() * 100);
+                                    arcTo.setY(nextTile.getCurrentRow() * 100 + 50);
                                     arcTo.setXAxisRotation(50);
                                     arcTo.setRadiusX(50);
                                     arcTo.setRadiusY(50);
@@ -176,103 +175,145 @@ public class GamePane extends Pane {
                                     arcTo.setLargeArcFlag(false);
 
 
-                                }
+                                    break;
+                                case "11":
+                                    if (ball.getDirection().equals("up")) {
+                                        ball.setDirection("right");
+                                        arcTo.setX(nextTile.getCurrentColumn() * 100 + 100);
+                                        arcTo.setY(nextTile.getCurrentRow() * 100 + 50);
+                                        arcTo.setXAxisRotation(50);
+                                        arcTo.setRadiusX(50);
+                                        arcTo.setRadiusY(50);
+                                        arcTo.setSweepFlag(true);
+                                        arcTo.setLargeArcFlag(false);
+                                    }
+
+                                    break;
+                                default:
+                                    canMove = false;
+                                    break;
+                            }
+                            path.getElements().add(arcTo);
+                        }
 
 
-                                break;
-                            case "01":
+                        break;
+                    case "down":
+                        if (nextTile.getDirection().equals("vertical")) {
+                            path.getElements().add(new LineTo(100 * nextTile.getCurrentColumn() + 50, 100 * nextTile.getCurrentRow() + 100));
 
-                                if (ball.getDirection().equals("down")){
-                                    ball.setDirection("right");
-
-                                    arcTo.setX(nextTile.getCurrentColumn()*100+50+ball.getTranslateX());
-                                    arcTo.setY(nextTile.getCurrentRow()*100+ball.getTranslateY());
-                                    arcTo.setXAxisRotation(50);
-                                    arcTo.setRadiusX(50);
-                                    arcTo.setRadiusY(50);
-                                    arcTo.setSweepFlag(false);
-                                    arcTo.setLargeArcFlag(false);
-
-
-
-                                }
-
-
-
-
-                                break;
-                            case "10":
-                                if (ball.getDirection().equals("up")){
+                        } else {
+                            ArcTo arcTo = new ArcTo();
+                            switch (nextTile.getDirection()) {
+                                case "00":
                                     ball.setDirection("left");
-                                    arcTo.setX(nextTile.getCurrentColumn()*100+50+ball.getTranslateX());
-                                    arcTo.setY(nextTile.getCurrentRow()*100+ball.getTranslateY());
+                                    arcTo.setX(nextTile.getCurrentColumn() * 100);
+                                    arcTo.setY(nextTile.getCurrentRow() * 100 + 50);
                                     arcTo.setXAxisRotation(50);
                                     arcTo.setRadiusX(50);
                                     arcTo.setRadiusY(50);
                                     arcTo.setSweepFlag(true);
                                     arcTo.setLargeArcFlag(false);
-                                }
 
-                                break;
-                            case "11":
-                                if (ball.getDirection().equals("up")){
+                                    break;
+
+                                case "01":
                                     ball.setDirection("right");
-                                }
-
-                                break;
-                        }
-                        path.getElements().add(arcTo);
-                    }
-
-
-                }else if(ball.getDirection().equals("right")||ball.getDirection().equals("left")){
-
-                    if (nextTile.getDirection().equals("horizontal")){
-                        if (nextTile instanceof EndTile)
-                            path.getElements().add(new LineTo(100*nextTile.getCurrentColumn()+ball.getTranslateX(),100*nextTile.getCurrentRow()+ball.getTranslateY()));
-                        else
-                            path.getElements().add(new LineTo(100*nextTile.getCurrentColumn()+ball.getTranslateX()+50,100*nextTile.getCurrentRow()+ball.getTranslateY()));
-
-                    }else{
-                        ArcTo arcTo = new ArcTo();
-                        switch (nextTile.getDirection()){
-                            case "00":
-                                if (ball.getDirection().equals("right")){
-                                    ball.setDirection("up");
-                                    arcTo.setX(nextTile.getCurrentColumn()*100+ball.getTranslateX());
-                                    arcTo.setY(nextTile.getCurrentRow()*100-50+ball.getTranslateY());
+                                    arcTo.setX(nextTile.getCurrentColumn() * 100 + 100);
+                                    arcTo.setY(nextTile.getCurrentRow() * 100 + 50);
                                     arcTo.setXAxisRotation(50);
                                     arcTo.setRadiusX(50);
                                     arcTo.setRadiusY(50);
                                     arcTo.setSweepFlag(false);
                                     arcTo.setLargeArcFlag(false);
 
-                                }
+                                    break;
+                                default:
+                                    canMove = false;
+                                    break;
+                            }
+                            path.getElements().add(arcTo);
 
-
-                                break;
-                            case "01":
-
-                                if (ball.getDirection().equals("left")){
-                                    ball.setDirection("up");
-                                }
-
-                                break;
-                            case "10":
-                                if (ball.getDirection().equals("right")){
-                                    ball.setDirection("down");
-                                }
-
-                                break;
-                            case "11":
-                                if (ball.getDirection().equals("left")){
-                                    ball.setDirection("down");
-                                }
-
-                                break;
                         }
-                        path.getElements().add(arcTo);
-                    }
+
+                        break;
+                    case "right":
+                        if (nextTile.getDirection().equals("horizontal")) {
+                            if (nextTile instanceof EndTile)
+                                path.getElements().add(new LineTo(100 * nextTile.getCurrentColumn() + 50, 100 * nextTile.getCurrentRow() + 50));
+                            else
+                                path.getElements().add(new LineTo(100 * nextTile.getCurrentColumn() + 100, 100 * nextTile.getCurrentRow() + 50));
+
+                        } else {
+                            ArcTo arcTo = new ArcTo();
+                            switch (nextTile.getDirection()) {
+                                case "00":
+                                    ball.setDirection("up");
+                                    arcTo.setX(nextTile.getCurrentColumn() * 100 + 50);
+                                    arcTo.setY(nextTile.getCurrentRow() * 100);
+                                    arcTo.setXAxisRotation(50);
+                                    arcTo.setRadiusX(50);
+                                    arcTo.setRadiusY(50);
+                                    arcTo.setSweepFlag(false);
+                                    arcTo.setLargeArcFlag(false);
+
+                                    break;
+
+                                case "10":
+                                    ball.setDirection("down");
+                                    arcTo.setX(nextTile.getCurrentColumn() * 100 + 50);
+                                    arcTo.setY(nextTile.getCurrentRow() * 100 + 100);
+                                    arcTo.setXAxisRotation(50);
+                                    arcTo.setRadiusX(50);
+                                    arcTo.setRadiusY(50);
+                                    arcTo.setSweepFlag(true);
+                                    arcTo.setLargeArcFlag(false);
+
+                                    break;
+                                default:
+                                    canMove = false;
+                                    break;
+                            }
+                            path.getElements().add(arcTo);
+                        }
+
+                        break;
+                    case "left":
+                        if (nextTile.getDirection().equals("horizontal")) {
+                            path.getElements().add(new LineTo(100 * nextTile.getCurrentColumn(), 100 * nextTile.getCurrentRow() + 50));
+                        } else {
+                            ArcTo arcTo = new ArcTo();
+                            switch (nextTile.getDirection()) {
+                                case "01":
+                                    ball.setDirection("up");
+                                    arcTo.setX(nextTile.getCurrentColumn() * 100 + 50);
+                                    arcTo.setY(nextTile.getCurrentRow() * 100);
+                                    arcTo.setXAxisRotation(50);
+                                    arcTo.setRadiusX(50);
+                                    arcTo.setRadiusY(50);
+                                    arcTo.setSweepFlag(true);
+                                    arcTo.setLargeArcFlag(false);
+
+                                    break;
+
+                                case "11":
+                                    ball.setDirection("down");
+                                    arcTo.setX(nextTile.getCurrentColumn() * 100 + 50);
+                                    arcTo.setY(nextTile.getCurrentRow() * 100 + 100);
+                                    arcTo.setXAxisRotation(50);
+                                    arcTo.setRadiusX(50);
+                                    arcTo.setRadiusY(50);
+                                    arcTo.setSweepFlag(false);
+                                    arcTo.setLargeArcFlag(false);
+
+                                    break;
+                                default:
+                                    canMove = false;
+                                    break;
+                            }
+                            path.getElements().add(arcTo);
+                        }
+                        break;
                 }
                 System.out.println(currentTile.getCurrentRow()+" "+currentTile.getCurrentColumn()+" drawed " +currentTile.getClass());
 
