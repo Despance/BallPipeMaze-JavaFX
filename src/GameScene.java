@@ -27,6 +27,7 @@ ArrayList<String> levelList = new ArrayList<>();
 int currentLevelIndex = 0;
     GamePane gamePane;
     Scene scene;
+    public static Text text;
 
 
     @Override
@@ -72,7 +73,7 @@ int currentLevelIndex = 0;
         });
         hBox.getChildren().add(checkButton);
 
-        Text text = new Text("move count: " + gamePane.getNumberOfMoves());
+        text = new Text("move count: " + gamePane.getNumberOfMoves());
         hBox.getChildren().add(text);
 
         Button nextButton = new Button("Next");

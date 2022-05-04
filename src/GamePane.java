@@ -425,8 +425,11 @@ public class GamePane extends Pane {
                     translate.setOnFinished(event ->{
                         isMoving=false;
                         makeLine();
+
                     } );
-                    numberOfMoves++;
+
+                    GameScene.text.setText("move count: " + ++numberOfMoves);
+
 
                     changedTile.setCurrentRow(tempRow);
                     changedTile.setCurrentColumn(tempColumn);
