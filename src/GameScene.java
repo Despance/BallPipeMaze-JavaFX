@@ -9,6 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -70,12 +71,18 @@ int currentLevelIndex = 0;
             gamePane.drawLine();
         });
         hBox.getChildren().add(checkButton);
+
+        Text text = new Text("move count: " + gamePane.getNumberOfMoves());
+        hBox.getChildren().add(text);
+
         Button nextButton = new Button("Next");
         nextButton.setOnAction(event -> {
-            start(primaryStage);
+            if(gamePane.isLevelSolved())
+                start(primaryStage);
 
         });
         hBox.getChildren().add(nextButton);
+
 
         borderPane.setBottom(hBox);
 

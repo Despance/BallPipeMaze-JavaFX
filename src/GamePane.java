@@ -10,15 +10,17 @@ public class GamePane extends Pane {
 
     private static boolean isMoving = false;
 
-    int rowCount;
-    int columnCount;
-    int cellSize;
+    private int rowCount;
+    private int columnCount;
+    private int cellSize;
 
-    int currentRow;
-    int currentColumn;
-    int spacing;
+    private int currentRow;
+    private int currentColumn;
+    private int spacing;
 
-    int numberOfMoves = 0;
+    private int numberOfMoves = 0;
+
+    private boolean levelSolved = false;
 
     Ball ball;
 
@@ -329,6 +331,7 @@ public class GamePane extends Pane {
                     pathTransition.setNode(ball);
                     pathTransition.setDuration(Duration.millis(1000));
                     pathTransition.play();
+                    levelSolved = true;
                 }else{
                     currentTile = nextTile;
                 }
@@ -442,6 +445,83 @@ public class GamePane extends Pane {
 
     }
 
+    public Ball getBall() {
+        return ball;
+    }
 
+    public void setBall(Ball ball) {
+        this.ball = ball;
+    }
 
+    public static boolean isIsMoving() {
+        return isMoving;
+    }
+
+    public static void setIsMoving(boolean isMoving) {
+        GamePane.isMoving = isMoving;
+    }
+
+    public int getRowCount() {
+        return rowCount;
+    }
+
+    public void setRowCount(int rowCount) {
+        this.rowCount = rowCount;
+    }
+
+    public int getColumnCount() {
+        return columnCount;
+    }
+
+    public void setColumnCount(int columnCount) {
+        this.columnCount = columnCount;
+    }
+
+    public int getCellSize() {
+        return cellSize;
+    }
+
+    public void setCellSize(int cellSize) {
+        this.cellSize = cellSize;
+    }
+
+    public int getCurrentRow() {
+        return currentRow;
+    }
+
+    public void setCurrentRow(int currentRow) {
+        this.currentRow = currentRow;
+    }
+
+    public int getCurrentColumn() {
+        return currentColumn;
+    }
+
+    public void setCurrentColumn(int currentColumn) {
+        this.currentColumn = currentColumn;
+    }
+
+    public int getSpacing() {
+        return spacing;
+    }
+
+    public void setSpacing(int spacing) {
+        this.spacing = spacing;
+    }
+
+    public int getNumberOfMoves() {
+        return numberOfMoves;
+    }
+
+    public void setNumberOfMoves(int numberOfMoves) {
+        this.numberOfMoves = numberOfMoves;
+    }
+
+    public boolean isLevelSolved() {
+        return levelSolved;
+    }
+
+    public void setLevelSolved(boolean levelSolved) {
+        this.levelSolved = levelSolved;
+    }
 }
