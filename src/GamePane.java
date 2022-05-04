@@ -18,6 +18,8 @@ public class GamePane extends Pane {
     int currentColumn;
     int spacing;
 
+    int numberOfMoves = 0;
+
     Ball ball;
 
 
@@ -81,7 +83,7 @@ public class GamePane extends Pane {
 
     public Path makeLine(){
         Path path = new Path();
-
+        //path.setVisible(false);
 
         boolean canMove = true;
         //Get current tile
@@ -318,7 +320,7 @@ public class GamePane extends Pane {
                 System.out.println(currentTile.getCurrentRow()+" "+currentTile.getCurrentColumn()+" drawed " +currentTile.getClass());
 
                 if (nextTile instanceof EndTile){
-                    path.toBack();
+
                     ball.toFront();
                     canMove = false;
                     System.out.println("finish");
@@ -417,10 +419,15 @@ public class GamePane extends Pane {
                     translateB.setNode(changedTile);
                     translateB.setDuration(Duration.millis(500));
                     translateB.play();
-                    translate.setOnFinished(event -> isMoving=false);
+                    translate.setOnFinished(event ->{
+                        isMoving=false;
+                        makeLine();
+                    } );
+                    numberOfMoves++;
 
                     changedTile.setCurrentRow(tempRow);
                     changedTile.setCurrentColumn(tempColumn);
+
 
                 }
             }
