@@ -3,7 +3,7 @@ import Tiles.*;
 import java.io.File;
 import java.util.*;
 
-// burda yaptığım input dosyasını alıp ArrayListe tile locationını atamak
+
 public class Io {
 
     private Tile[] list;

@@ -1,8 +1,6 @@
 package Tiles;
 
-import javafx.event.EventHandler;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 
 
 
@@ -61,12 +59,6 @@ public class Tile extends ImageView {
 
 
 
-
-
-    public void rotateTile(int degree){
-        this.setRotate(degree);
-
-    }
 
     public int getCurrentRow() {
         return currentRow;

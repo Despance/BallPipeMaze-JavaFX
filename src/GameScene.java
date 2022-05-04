@@ -58,32 +58,7 @@ int currentLevelIndex = 0;
         }
         gamePane.addBall(new Ball(0,0,20));
 
-        /*
 
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
-                TestTile rectangle = new TestTile(0,0,50,50);
-                rectangle.setFill(Color.color(new Random().nextDouble(),new Random().nextDouble(),new Random().nextDouble()));
-
-
-                rectangle.setOnMousePressed(e->{
-                    rectangle.startX= e.getX();
-                    rectangle.startY = e.getY();
-                });
-                rectangle.setOnMouseReleased(e->{
-                    rectangle.finishX=e.getX();
-                    rectangle.finishY =e.getY();
-                    gamePane.changeTiles(rectangle, rectangle.checkDirection());
-
-                });
-
-
-
-                gamePane.add(rectangle);
-
-            }
-        }
-        */
 
         pane.setPadding(new Insets(10,10,10,10));
         borderPane.setCenter(pane);

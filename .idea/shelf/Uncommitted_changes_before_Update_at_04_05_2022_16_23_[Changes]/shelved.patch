@@ -1,0 +1,260 @@
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_25_04_2022_22_38__Changes_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_25_04_2022_22_38__Changes_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_25_04_2022_22_38__Changes_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_25_04_2022_22_38__Changes_.xml	(revision 024090c90565d2539b0e561e8cf37f9c559ed418)
++++ /dev/null	(revision 024090c90565d2539b0e561e8cf37f9c559ed418)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_25_04_2022_22_38_[Changes]" date="1650915495029" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_04_2022_22_38_[Changes]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 25/04/2022 22:38 [Changes]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_25_04_2022_22_38_[Changes]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_25_04_2022_22_38_[Changes]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Update_at_25_04_2022_22_38_[Changes]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_25_04_2022_22_38_[Changes]/shelved.patch	(revision 024090c90565d2539b0e561e8cf37f9c559ed418)
++++ /dev/null	(revision 024090c90565d2539b0e561e8cf37f9c559ed418)
+@@ -1,216 +0,0 @@
+-Index: src/Pipe.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/src/Pipe.java b/src/Pipe.java
+-new file mode 100644
+---- /dev/null	(date 1650915490344)
+-+++ b/src/Pipe.java	(date 1650915490344)
+-@@ -0,0 +1,22 @@
+-+import javafx.application.Application;
+-+import javafx.scene.image.*;
+-+import javafx.stage.*;
+-+
+-+public class Pipe  implements Tiles, Movable{
+-+
+-+    public Pipe(){
+-+
+-+    }
+-+
+-+    public ImageView getImage(){
+-+        Image image = new Image("");
+-+        ImageView tile = new ImageView(image);
+-+        tile.setFitHeight(100);
+-+        tile.setFitWidth(100);
+-+        return tile;
+-+    }
+-+
+-+    public boolean isMovable(){
+-+        return true;
+-+    }
+-+}
+-Index: src/End.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/src/End.java b/src/End.java
+-new file mode 100644
+---- /dev/null	(date 1650915490332)
+-+++ b/src/End.java	(date 1650915490332)
+-@@ -0,0 +1,20 @@
+-+import javafx.scene.image.Image;
+-+import javafx.scene.image.ImageView;
+-+
+-+public class End implements Tiles{
+-+
+-+
+-+
+-+
+-+    public ImageView getImage(){
+-+        Image image = new Image("");
+-+        ImageView tile = new ImageView(image);
+-+        tile.setFitHeight(100);
+-+        tile.setFitWidth(100);
+-+        return tile;
+-+    }
+-+
+-+    public boolean isMovable(){
+-+        return false;
+-+    }
+-+}
+-Index: src/Block.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/src/Block.java b/src/Block.java
+-new file mode 100644
+---- /dev/null	(date 1650915490320)
+-+++ b/src/Block.java	(date 1650915490320)
+-@@ -0,0 +1,17 @@
+-+import javafx.scene.image.Image;
+-+import javafx.scene.image.ImageView;
+-+
+-+public class Block implements Empty{
+-+
+-+
+-+    public ImageView getImage(){
+-+        Image image = new Image("");
+-+        ImageView tile = new ImageView(image);
+-+        tile.setFitHeight(100);
+-+        tile.setFitWidth(100);
+-+        return tile;
+-+    }
+-+    public boolean isMovable(){
+-+        return true;
+-+    }
+-+}
+-Index: src/PipeStatic.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/src/PipeStatic.java b/src/PipeStatic.java
+-new file mode 100644
+---- /dev/null	(date 1650915490307)
+-+++ b/src/PipeStatic.java	(date 1650915490307)
+-@@ -0,0 +1,17 @@
+-+import javafx.scene.image.Image;
+-+import javafx.scene.image.ImageView;
+-+
+-+public class PipeStatic implements Tiles {
+-+
+-+    public ImageView getImage(){
+-+        Image image = new Image("");
+-+        ImageView tile = new ImageView(image);
+-+        tile.setFitHeight(100);
+-+        tile.setFitWidth(100);
+-+        return tile;
+-+    }
+-+
+-+    public boolean isMovable(){
+-+        return false;
+-+    }
+-+}
+-Index: src/Free.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/src/Free.java b/src/Free.java
+-new file mode 100644
+---- /dev/null	(date 1650915490385)
+-+++ b/src/Free.java	(date 1650915490385)
+-@@ -0,0 +1,18 @@
+-+import javafx.scene.image.Image;
+-+import javafx.scene.image.ImageView;
+-+
+-+public class Free implements Empty{
+-+
+-+
+-+    public ImageView getImage(){
+-+        Image image = new Image("");
+-+        ImageView tile = new ImageView(image);
+-+        tile.setFitHeight(100);
+-+        tile.setFitWidth(100);
+-+        return tile;
+-+    }
+-+
+-+    public boolean isMovable(){
+-+        return true;
+-+    }
+-+}
+-Index: src/Movable.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/src/Movable.java b/src/Movable.java
+-new file mode 100644
+---- /dev/null	(date 1650915490356)
+-+++ b/src/Movable.java	(date 1650915490356)
+-@@ -0,0 +1,3 @@
+-+public interface Movable {
+-+    boolean isMovable();
+-+}
+-Index: src/Starter.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/src/Starter.java b/src/Starter.java
+-new file mode 100644
+---- /dev/null	(date 1650915490293)
+-+++ b/src/Starter.java	(date 1650915490293)
+-@@ -0,0 +1,20 @@
+-+import javafx.scene.image.Image;
+-+import javafx.scene.image.ImageView;
+-+
+-+public class Starter implements Tiles {
+-+
+-+
+-+
+-+    public ImageView getImage(){
+-+        Image image = new Image("");
+-+        ImageView tile = new ImageView(image);
+-+        tile.setFitHeight(100);
+-+        tile.setFitWidth(100);
+-+        return tile;
+-+    }
+-+
+-+    public boolean isMovable(){
+-+        return false;
+-+    }
+-+
+-+}
+-Index: src/Tiles.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/src/Tiles.java b/src/Tiles.java
+-new file mode 100644
+---- /dev/null	(date 1650915490371)
+-+++ b/src/Tiles.java	(date 1650915490371)
+-@@ -0,0 +1,6 @@
+-+import javafx.scene.image.ImageView;
+-+
+-+public interface Tiles {
+-+
+-+    ImageView getImage();
+-+}
+-Index: src/Empty.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/src/Empty.java b/src/Empty.java
+-new file mode 100644
+---- /dev/null	(date 1650900793732)
+-+++ b/src/Empty.java	(date 1650900793732)
+-@@ -0,0 +1,3 @@
+-+public interface Empty extends Tiles, Movable{
+-+
+-+}
+Index: src/Tiles/Tile.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Tiles;\r\n\r\nimport javafx.event.EventHandler;\r\nimport javafx.scene.image.ImageView;\r\nimport javafx.scene.input.MouseEvent;\r\n\r\n\r\n\r\npublic class Tile extends ImageView {\r\n\r\n\r\n    private int currentRow;\r\n    private int currentColumn;\r\n\r\n    private double startX;\r\n    private double startY;\r\n    private double finishX;\r\n    private double finishY;\r\n\r\n    private int size;\r\n\r\n\r\n\r\n    private String direction;\r\n\r\n\r\n    public Tile(int currentRow,int currentColumn,String url){\r\n        super(url);\r\n        this.currentColumn = currentColumn;\r\n        this.currentRow = currentRow;\r\n        super.setFitWidth(size);\r\n        super.setFitHeight(size);\r\n\r\n    }\r\n\r\n\r\n\r\n    public String checkDirection(){\r\n        double degree = -Math.atan2(finishY-startY, finishX- startX);\r\n\r\n        System.out.println(degree);\r\n\r\n        if(degree< Math.PI/4 &&degree > 0|| degree>-Math.PI/4 && degree<0){\r\n            System.out.println(\"Right\");\r\n            return \"Right\";\r\n        } else if (degree> -Math.PI*3/4 && degree<-Math.PI/4) {\r\n            System.out.println(\"Down\");\r\n            return \"Down\";\r\n        }else if(degree<Math.PI*3/4 && degree>Math.PI/4){\r\n            System.out.println(\"Up\");\r\n            return \"Up\";\r\n        }else if(degree< Math.PI*3/4 || degree>-Math.PI*3/4){\r\n            System.out.println(\"Left\");\r\n            return \"Left\";\r\n        }else{\r\n            return null;\r\n        }\r\n\r\n    }\r\n\r\n\r\n\r\n\r\n\r\n\r\n    public void rotateTile(int degree){\r\n        this.setRotate(degree);\r\n\r\n    }\r\n\r\n    public int getCurrentRow() {\r\n        return currentRow;\r\n    }\r\n\r\n    public void setCurrentRow(int currentRow) {\r\n        this.currentRow = currentRow;\r\n    }\r\n\r\n    public int getCurrentColumn() {\r\n        return currentColumn;\r\n    }\r\n\r\n    public void setCurrentColumn(int currentColumn) {\r\n        this.currentColumn = currentColumn;\r\n    }\r\n\r\n    public double getStartX() {\r\n        return startX;\r\n    }\r\n\r\n    public void setStartX(double startX) {\r\n        this.startX = startX;\r\n    }\r\n\r\n    public double getStartY() {\r\n        return startY;\r\n    }\r\n\r\n    public void setStartY(double startY) {\r\n        this.startY = startY;\r\n    }\r\n\r\n    public double getFinishX() {\r\n        return finishX;\r\n    }\r\n\r\n    public void setFinishX(double finishX) {\r\n        this.finishX = finishX;\r\n    }\r\n\r\n    public double getFinishY() {\r\n        return finishY;\r\n    }\r\n\r\n    public void setFinishY(double finishY) {\r\n        this.finishY = finishY;\r\n    }\r\n\r\n    public int getSize() {\r\n        return size;\r\n    }\r\n\r\n    public void setSize(int size) {\r\n        this.size = size;\r\n    }\r\n\r\n    public String getDirection() {\r\n        return direction;\r\n    }\r\n\r\n    public void setDirection(String direction) {\r\n        this.direction = direction;\r\n        System.out.println(\"direction set to \"+direction);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Tiles/Tile.java b/src/Tiles/Tile.java
+--- a/src/Tiles/Tile.java	(revision 024090c90565d2539b0e561e8cf37f9c559ed418)
++++ b/src/Tiles/Tile.java	(date 1651521237533)
+@@ -62,12 +62,12 @@
+ 
+ 
+ 
+-
++/*
+     public void rotateTile(int degree){
+         this.setRotate(degree);
+ 
+     }
+-
++*/
+     public int getCurrentRow() {
+         return currentRow;
+     }

@@ -1,0 +1,95 @@
+Index: src/Tiles/Tile.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Tiles;\r\n\r\nimport javafx.event.EventHandler;\r\nimport javafx.scene.image.ImageView;\r\nimport javafx.scene.input.MouseEvent;\r\n\r\n\r\n\r\npublic class Tile extends ImageView {\r\n\r\n\r\n    private int currentRow;\r\n    private int currentColumn;\r\n\r\n    private double startX;\r\n    private double startY;\r\n    private double finishX;\r\n    private double finishY;\r\n\r\n    private int size;\r\n\r\n\r\n\r\n    private String direction;\r\n\r\n\r\n    public Tile(int currentRow,int currentColumn,String url){\r\n        super(url);\r\n        this.currentColumn = currentColumn;\r\n        this.currentRow = currentRow;\r\n        super.setFitWidth(size);\r\n        super.setFitHeight(size);\r\n\r\n    }\r\n\r\n\r\n\r\n    public String checkDirection(){\r\n        double degree = -Math.atan2(finishY-startY, finishX- startX);\r\n\r\n        System.out.println(degree);\r\n\r\n        if(degree< Math.PI/4 &&degree > 0|| degree>-Math.PI/4 && degree<0){\r\n            System.out.println(\"Right\");\r\n            return \"Right\";\r\n        } else if (degree> -Math.PI*3/4 && degree<-Math.PI/4) {\r\n            System.out.println(\"Down\");\r\n            return \"Down\";\r\n        }else if(degree<Math.PI*3/4 && degree>Math.PI/4){\r\n            System.out.println(\"Up\");\r\n            return \"Up\";\r\n        }else if(degree< Math.PI*3/4 || degree>-Math.PI*3/4){\r\n            System.out.println(\"Left\");\r\n            return \"Left\";\r\n        }else{\r\n            return null;\r\n        }\r\n\r\n    }\r\n\r\n\r\n\r\n\r\n\r\n\r\n    public void rotateTile(int degree){\r\n        this.setRotate(degree);\r\n\r\n    }\r\n\r\n    public int getCurrentRow() {\r\n        return currentRow;\r\n    }\r\n\r\n    public void setCurrentRow(int currentRow) {\r\n        this.currentRow = currentRow;\r\n    }\r\n\r\n    public int getCurrentColumn() {\r\n        return currentColumn;\r\n    }\r\n\r\n    public void setCurrentColumn(int currentColumn) {\r\n        this.currentColumn = currentColumn;\r\n    }\r\n\r\n    public double getStartX() {\r\n        return startX;\r\n    }\r\n\r\n    public void setStartX(double startX) {\r\n        this.startX = startX;\r\n    }\r\n\r\n    public double getStartY() {\r\n        return startY;\r\n    }\r\n\r\n    public void setStartY(double startY) {\r\n        this.startY = startY;\r\n    }\r\n\r\n    public double getFinishX() {\r\n        return finishX;\r\n    }\r\n\r\n    public void setFinishX(double finishX) {\r\n        this.finishX = finishX;\r\n    }\r\n\r\n    public double getFinishY() {\r\n        return finishY;\r\n    }\r\n\r\n    public void setFinishY(double finishY) {\r\n        this.finishY = finishY;\r\n    }\r\n\r\n    public int getSize() {\r\n        return size;\r\n    }\r\n\r\n    public void setSize(int size) {\r\n        this.size = size;\r\n    }\r\n\r\n    public String getDirection() {\r\n        return direction;\r\n    }\r\n\r\n    public void setDirection(String direction) {\r\n        this.direction = direction;\r\n        System.out.println(\"direction set to \"+direction);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Tiles/Tile.java b/src/Tiles/Tile.java
+--- a/src/Tiles/Tile.java	(revision 64edb2b040ab673cccb8d44ff3f4c67fa048e3c0)
++++ b/src/Tiles/Tile.java	(date 1651670615195)
+@@ -62,12 +62,12 @@
+ 
+ 
+ 
+-
++/*
+     public void rotateTile(int degree){
+         this.setRotate(degree);
+ 
+     }
+-
++*/
+     public int getCurrentRow() {
+         return currentRow;
+     }
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_27_04_2022_17_29__Changes_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_27_04_2022_17_29__Changes_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_27_04_2022_17_29__Changes_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_27_04_2022_17_29__Changes_.xml	(revision 64edb2b040ab673cccb8d44ff3f4c67fa048e3c0)
++++ /dev/null	(revision 64edb2b040ab673cccb8d44ff3f4c67fa048e3c0)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_27_04_2022_17_29_[Changes]" date="1651069765271" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_04_2022_17_29_[Changes]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 27/04/2022 17:29 [Changes]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_27_04_2022_17_29_[Changes]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_27_04_2022_17_29_[Changes]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Update_at_27_04_2022_17_29_[Changes]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_27_04_2022_17_29_[Changes]/shelved.patch	(revision 64edb2b040ab673cccb8d44ff3f4c67fa048e3c0)
++++ /dev/null	(revision 64edb2b040ab673cccb8d44ff3f4c67fa048e3c0)
+@@ -1,51 +0,0 @@
+-Index: src/GameScene.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>import Tiles.TestTile;\r\nimport javafx.application.Application;\r\nimport javafx.geometry.Insets;\r\nimport javafx.scene.Scene;\r\nimport javafx.scene.control.Button;\r\nimport javafx.scene.layout.BorderPane;\r\nimport javafx.scene.layout.StackPane;\r\nimport javafx.scene.paint.Color;\r\nimport javafx.stage.Stage;\r\n\r\nimport java.util.Random;\r\n\r\npublic class GameScene extends Application {\r\n\r\n    public static void main(String[] args){\r\n        launch(args);\r\n    }\r\n\r\n\r\n\r\n    @Override\r\n    public void start(Stage primaryStage){\r\n        primaryStage.setTitle(\"Ball Pipe Maze\");\r\n\r\n        BorderPane borderPane = new BorderPane();\r\n        StackPane pane = new StackPane();\r\n        GamePane gamePane = new GamePane(4,4,50,10);\r\n        pane.getChildren().add(gamePane);\r\n        gamePane.setPadding(new Insets(10,10,10,10));\r\n\r\n\r\n        for (int i = 0; i < 4; i++) {\r\n            for (int j = 0; j < 4; j++) {\r\n                TestTile rectangle = new TestTile(0,0,50,50);\r\n                rectangle.setFill(Color.color(new Random().nextDouble(),new Random().nextDouble(),new Random().nextDouble()));\r\n\r\n\r\n                rectangle.setOnMousePressed(e->{\r\n                    rectangle.startX= e.getX();\r\n                    rectangle.startY = e.getY();\r\n                });\r\n                rectangle.setOnMouseReleased(e->{\r\n                    rectangle.finishX=e.getX();\r\n                    rectangle.finishY =e.getY();\r\n                    gamePane.changeTiles(rectangle, rectangle.checkDirection());\r\n\r\n                });\r\n\r\n\r\n\r\n                gamePane.add(rectangle);\r\n\r\n            }\r\n        }\r\n\r\n        borderPane.setCenter(pane);\r\n\r\n\r\n        borderPane.setBottom(new Button(\"click me\"));\r\n\r\n        borderPane.setLeft(new Button(\"click me\"));\r\n\r\n        borderPane.setRight(new Button(\"click me\"));\r\n\r\n        borderPane.setTop(new Button(\"click me\"));\r\n\r\n\r\n\r\n\r\n\r\n        Scene scene = new Scene(borderPane,450  ,350);\r\n        primaryStage.setScene(scene);\r\n        primaryStage.show();\r\n\r\n    }\r\n}\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/src/GameScene.java b/src/GameScene.java
+---- a/src/GameScene.java	(revision 2037f78ac1224e1a9550eb7ed7c90eea92ebf2b9)
+-+++ b/src/GameScene.java	(date 1651069744647)
+-@@ -24,14 +24,14 @@
+- 
+-         BorderPane borderPane = new BorderPane();
+-         StackPane pane = new StackPane();
+--        GamePane gamePane = new GamePane(4,4,50,10);
+-+        GamePane gamePane = new GamePane(4,4,100,10);
+-         pane.getChildren().add(gamePane);
+-         gamePane.setPadding(new Insets(10,10,10,10));
+- 
+- 
+-         for (int i = 0; i < 4; i++) {
+-             for (int j = 0; j < 4; j++) {
+--                TestTile rectangle = new TestTile(0,0,50,50);
+-+                TestTile rectangle = new TestTile(0,0,100,100);
+-                 rectangle.setFill(Color.color(new Random().nextDouble(),new Random().nextDouble(),new Random().nextDouble()));
+- 
+- 
+-@@ -55,7 +55,7 @@
+- 
+-         borderPane.setCenter(pane);
+- 
+--
+-+        /*
+-         borderPane.setBottom(new Button("click me"));
+- 
+-         borderPane.setLeft(new Button("click me"));
+-@@ -63,12 +63,12 @@
+-         borderPane.setRight(new Button("click me"));
+- 
+-         borderPane.setTop(new Button("click me"));
+-+        */
+- 
+- 
+- 
+- 
+--
+--        Scene scene = new Scene(borderPane,450  ,350);
+-+        Scene scene = new Scene(borderPane,450  ,450);
+-         primaryStage.setScene(scene);
+-         primaryStage.show();
+- 
