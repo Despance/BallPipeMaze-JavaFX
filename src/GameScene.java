@@ -4,16 +4,21 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class GameScene extends Application {
 
@@ -21,7 +26,7 @@ public class GameScene extends Application {
         launch(args);
     }
 
-File assets = new File("input");
+File input = new File("input");
 ArrayList<String> levelList = new ArrayList<>();
     Io currentLevel;
 int currentLevelIndex = 0;
@@ -40,9 +45,15 @@ int currentLevelIndex = 0;
         pane.getChildren().add(gamePane);
         gamePane.setPadding(new Insets(10,10,10,10));
 
+        File music = new File("assets");
+        String s = "/BackgroundMusic.mp3";
 
+        Media backgroundMusic = new Media(music.toURI() + s);
+        MediaPlayer mediaPlayer = new MediaPlayer(backgroundMusic);
+        mediaPlayer.setVolume(0.2);
+        mediaPlayer.play();
 
-        for (File file : assets.listFiles()) {
+        for (File file : input.listFiles()) {
             if (!file.isDirectory()) {
                 levelList.add(file.getPath());
                 System.out.println(file.getPath());
@@ -60,7 +71,27 @@ int currentLevelIndex = 0;
         }
         gamePane.addBall(new Ball(0,0,20));
 
+        if(gamePane.isLevelSolved()) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("option box");
+            alert.setHeaderText("Congratulation you won");
+            alert.setContentText("the choice is yours: ");
 
+            ButtonType buttonNext = new ButtonType("Next");
+            ButtonType buttonMainMenu = new ButtonType("MainMenu");
+
+            alert.getButtonTypes().setAll(buttonNext, buttonMainMenu);
+
+            Optional<ButtonType> result = alert.showAndWait();
+
+            if(result.get() == buttonNext){
+
+            }
+            else{
+
+            }
+
+        }
 
         pane.setPadding(new Insets(10,10,10,10));
         borderPane.setCenter(pane);
