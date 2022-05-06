@@ -25,6 +25,15 @@ import java.util.Optional;
 public class GameScene extends Application {
 
     public static void main(String[] args){
+        File music = new File("assets");
+        String s = "/BackgroundMusic.mp3";
+
+        Media backgroundMusic = new Media(music.toURI() + s);
+        AudioClip mediaPlayer = new AudioClip(backgroundMusic.getSource());
+        mediaPlayer.setVolume(0.2);
+        mediaPlayer.setCycleCount(Integer.MAX_VALUE);
+        mediaPlayer.play();
+
         launch(args);
     }
 
@@ -47,14 +56,7 @@ int currentLevelIndex = 0;
         pane.getChildren().add(gamePane);
         gamePane.setPadding(new Insets(10,10,10,10));
 
-        File music = new File("assets");
-        String s = "/BackgroundMusic.mp3";
 
-        Media backgroundMusic = new Media(music.toURI() + s);
-        AudioClip mediaPlayer = new AudioClip(backgroundMusic.getSource());
-        mediaPlayer.setVolume(0.2);
-        mediaPlayer.setCycleCount(Integer.MAX_VALUE);
-        mediaPlayer.play();
 
         for (File file : input.listFiles()) {
             if (!file.isDirectory()) {
