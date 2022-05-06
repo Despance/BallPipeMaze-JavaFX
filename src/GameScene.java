@@ -11,12 +11,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -49,8 +51,9 @@ int currentLevelIndex = 0;
         String s = "/BackgroundMusic.mp3";
 
         Media backgroundMusic = new Media(music.toURI() + s);
-        MediaPlayer mediaPlayer = new MediaPlayer(backgroundMusic);
+        AudioClip mediaPlayer = new AudioClip(backgroundMusic.getSource());
         mediaPlayer.setVolume(0.2);
+        mediaPlayer.setCycleCount(Integer.MAX_VALUE);
         mediaPlayer.play();
 
         for (File file : input.listFiles()) {
@@ -71,27 +74,7 @@ int currentLevelIndex = 0;
         }
         gamePane.addBall(new Ball(0,0,20));
 
-        if(gamePane.isLevelSolved()) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("option box");
-            alert.setHeaderText("Congratulation you won");
-            alert.setContentText("the choice is yours: ");
 
-            ButtonType buttonNext = new ButtonType("Next");
-            ButtonType buttonMainMenu = new ButtonType("MainMenu");
-
-            alert.getButtonTypes().setAll(buttonNext, buttonMainMenu);
-
-            Optional<ButtonType> result = alert.showAndWait();
-
-            if(result.get() == buttonNext){
-
-            }
-            else{
-
-            }
-
-        }
 
         pane.setPadding(new Insets(10,10,10,10));
         borderPane.setCenter(pane);
@@ -113,6 +96,28 @@ int currentLevelIndex = 0;
                 start(primaryStage);
 
         });
+
+        gamePane.getPathTransition().setOnFinished(event -> {
+            if(gamePane.isLevelSolved()) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("option box");
+                alert.setHeaderText("Congratulation you won");
+                alert.setContentText("the choice is yours: ");
+
+                ButtonType buttonNext = new ButtonType("Next");
+                ButtonType buttonMainMenu = new ButtonType("MainMenu");
+
+                alert.getButtonTypes().setAll(buttonNext, buttonMainMenu);
+
+                Button okButton = (Button) alert.getDialogPane().lookupButton(buttonNext);
+                okButton.setOnAction(event1 -> start(primaryStage) );
+
+                alert.show();
+            }
+        });
+
+
+
         hBox.getChildren().add(nextButton);
 
 
