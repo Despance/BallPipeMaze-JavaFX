@@ -23,6 +23,8 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 public class GameScene extends Application {
+    static File input = new File("input");
+    static ArrayList<String> levelList = new ArrayList<>();
 
     public static void main(String[] args){
         File music = new File("assets");
@@ -30,15 +32,22 @@ public class GameScene extends Application {
 
         Media backgroundMusic = new Media(music.toURI() + s);
         AudioClip mediaPlayer = new AudioClip(backgroundMusic.getSource());
-        mediaPlayer.setVolume(0.2);
+        mediaPlayer.setVolume(0.1);
         mediaPlayer.setCycleCount(Integer.MAX_VALUE);
         mediaPlayer.play();
+
+        for (File file : input.listFiles()) {
+            if (!file.isDirectory()) {
+                levelList.add(file.getPath());
+                System.out.println(file.getPath());
+            }
+        }
 
         launch(args);
     }
 
-File input = new File("input");
-ArrayList<String> levelList = new ArrayList<>();
+
+
     Io currentLevel;
 int currentLevelIndex = 0;
     GamePane gamePane;
@@ -58,14 +67,10 @@ int currentLevelIndex = 0;
 
 
 
-        for (File file : input.listFiles()) {
-            if (!file.isDirectory()) {
-                levelList.add(file.getPath());
-                System.out.println(file.getPath());
-            }
-        }
+
 
             currentLevel = new Io(new File(levelList.get(currentLevelIndex)));
+            System.out.println(levelList.get(currentLevelIndex));
             currentLevel.decodeInput();
             currentLevelIndex++;
 
@@ -92,24 +97,20 @@ int currentLevelIndex = 0;
         text = new Text("move count: " + gamePane.getNumberOfMoves());
         hBox.getChildren().add(text);
 
-        Button nextButton = new Button("Next");
-        nextButton.setOnAction(event -> {
-            if(gamePane.isLevelSolved())
-                start(primaryStage);
 
-        });
 
         gamePane.getPathTransition().setOnFinished(event -> {
             if(gamePane.isLevelSolved()) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("option box");
                 alert.setHeaderText("Congratulation you won");
-                alert.setContentText("the choice is yours: ");
+                alert.setContentText("Press next to go to the next level");
+
+                alert.setOnHidden(event1 ->  start(primaryStage));
 
                 ButtonType buttonNext = new ButtonType("Next");
-                ButtonType buttonMainMenu = new ButtonType("MainMenu");
 
-                alert.getButtonTypes().setAll(buttonNext, buttonMainMenu);
+                alert.getButtonTypes().setAll(buttonNext);
 
                 Button okButton = (Button) alert.getDialogPane().lookupButton(buttonNext);
                 okButton.setOnAction(event1 -> start(primaryStage) );
@@ -118,10 +119,8 @@ int currentLevelIndex = 0;
             }
         });
 
-
-
-        hBox.getChildren().add(nextButton);
-
+        Text levelText = new Text("Level " + currentLevelIndex);
+        hBox.getChildren().add(levelText);
 
         borderPane.setBottom(hBox);
 
