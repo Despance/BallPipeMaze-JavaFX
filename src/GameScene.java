@@ -100,10 +100,11 @@ int currentLevelIndex = 0;
 
 
         gamePane.getPathTransition().setOnFinished(event -> {
+            if (currentLevelIndex!=levelList.size()){
             if(gamePane.isLevelSolved()) {
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("option box");
-                alert.setHeaderText("Congratulation you won");
+                Alert alert = new Alert(Alert.AlertType.NONE);
+                alert.setTitle("You Won");
+                alert.setHeaderText("You have completed this level using "+ gamePane.getNumberOfMoves()+" moves");
                 alert.setContentText("Press next to go to the next level");
 
                 alert.setOnHidden(event1 ->  start(primaryStage));
@@ -112,8 +113,20 @@ int currentLevelIndex = 0;
 
                 alert.getButtonTypes().setAll(buttonNext);
 
-                Button okButton = (Button) alert.getDialogPane().lookupButton(buttonNext);
-                okButton.setOnAction(event1 -> start(primaryStage) );
+                alert.show();
+            }
+        }else {
+
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Game Over");
+                alert.setHeaderText("You have completed all the levels");
+                alert.setContentText("Press exit to end the game");
+
+                alert.setOnHidden(event1 -> System.exit(0));
+
+                ButtonType buttonNext = new ButtonType("Exit");
+
+                alert.getButtonTypes().setAll(buttonNext);
 
                 alert.show();
             }
