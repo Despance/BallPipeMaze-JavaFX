@@ -1,0 +1,30 @@
+Index: src/Io.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import Tiles.*;\r\n\r\nimport java.io.File;\r\nimport java.util.*;\r\n\r\n\r\npublic class Io {\r\n\r\n    private Tile[] list;\r\n    private File file;\r\n    Scanner input;\r\n\r\n    Tile tile;\r\n\r\n\r\n\r\n    public Io(){\r\n    }\r\n    public Io(File file){\r\n        this.file = file;\r\n\r\n    }\r\n    public void decodeInput(){\r\n       try {\r\n           if (file.exists()) {\r\n               input = new Scanner(file);\r\n           }\r\n           else\r\n               throw new Exception(\"File Not Found\");\r\n       }\r\n       catch(Exception ex){\r\n           System.out.println(ex);\r\n           System.exit(1);\r\n       }\r\n            list = new Tile[16];\r\n           String[] tempStringArray;\r\n           int index;\r\n\r\n           while (input.hasNext()){\r\n\r\n               String tempS = input.nextLine();\r\n               if(tempS.equals(\"\"))\r\n                   continue;\r\n               tempStringArray = tempS.split(\",\");\r\n               index = Integer.parseInt(tempStringArray[0])-1;\r\n\r\n                switch (tempStringArray[1].toLowerCase()){\r\n\r\n                   case \"starter\" :\r\n                       list[index]= new StarterTile(index/4,index%4,tempStringArray[2].toLowerCase());\r\n                       break;\r\n\r\n                   case \"empty\" :\r\n                       if(tempStringArray[2].toLowerCase().equals(\"free\"))\r\n                           list[index]= new FreeTile(index/4,index%4);\r\n                       else\r\n                           list[index]= new EmptyTile(index/4,index%4);\r\n                       break;\r\n\r\n                   case \"pipe\" :\r\n                       if(tempStringArray[2].toLowerCase().equals(\"horizontal\") || tempStringArray[2].toLowerCase().equals(\"vertical\"))\r\n                           list[index]= new PipeTile(index/4,index%4,tempStringArray[2].toLowerCase());\r\n                       else\r\n                           list[index]=  new CurvedPipeTile(index/4,index%4,tempStringArray[2].toLowerCase());\r\n                       break;\r\n\r\n                   case \"end\" :\r\n                       list[index]= new EndTile(index/4,index%4,tempStringArray[2].toLowerCase());\r\n                       break;\r\n\r\n                   case \"pipestatic\" :\r\n                       if(tempStringArray[2].toLowerCase().equals(\"horizontal\") || tempStringArray[2].toLowerCase().equals(\"vertical\"))\r\n                           list[index]=  new PipeStaticTile(index/4,index%4,tempStringArray[2].toLowerCase());\r\n                       else\r\n                           list[index]= new CurvedPipeStaticTile(index/4,index%4,tempStringArray[2].toLowerCase());\r\n                       break;\r\n\r\n               }\r\n\r\n\r\n           }\r\n\r\n\r\n\r\n\r\n    }\r\n\r\n    public Tile[] getList() {\r\n        return list;\r\n    }\r\n\r\n    public void setList(Tile[] list) {\r\n        this.list = list;\r\n    }\r\n\r\n    public File getFile() {\r\n        return file;\r\n    }\r\n\r\n    public void setFile(File file) {\r\n        this.file = file;\r\n    }\r\n\r\n    public Scanner getInput() {\r\n        return input;\r\n    }\r\n\r\n    public void setInput(Scanner input) {\r\n        this.input = input;\r\n    }\r\n\r\n    public Tile getTile() {\r\n        return tile;\r\n    }\r\n\r\n    public void setTile(Tile tile) {\r\n        this.tile = tile;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Io.java b/src/Io.java
+--- a/src/Io.java	(revision 4a40c7667d52128c52ab94c417834a985aee669b)
++++ b/src/Io.java	(date 1651955738296)
+@@ -10,7 +10,6 @@
+     private File file;
+     Scanner input;
+ 
+-    Tile tile;
+ 
+ 
+ 
+@@ -109,11 +108,5 @@
+         this.input = input;
+     }
+ 
+-    public Tile getTile() {
+-        return tile;
+-    }
+ 
+-    public void setTile(Tile tile) {
+-        this.tile = tile;
+-    }
+ }

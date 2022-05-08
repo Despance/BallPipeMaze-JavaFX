@@ -21,7 +21,8 @@ import java.io.File;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Optional;
-
+// Mustafa Emir Uyar 150120007
+// Muhammed Hayta 150121068
 public class GameScene extends Application {
     static File input = new File("input");
     static ArrayList<String> levelList = new ArrayList<>();
@@ -56,7 +57,7 @@ public class GameScene extends Application {
     @Override
     public void start(Stage primaryStage){
         primaryStage.setTitle("Ball Pipe Maze");
-
+        primaryStage.setResizable(false);
         //Create a borderpane to arrange gamePane and other nodes
         BorderPane borderPane = new BorderPane();
         //Use stackPane to Center the gamePane
@@ -137,7 +138,6 @@ public class GameScene extends Application {
 
         //Create the scene
         scene = new Scene(borderPane,426  ,454);
-
         primaryStage.setScene(scene);
         primaryStage.show();
 

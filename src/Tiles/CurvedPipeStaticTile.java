@@ -3,6 +3,7 @@ package Tiles;
 import javafx.scene.image.Image;
 
 public class CurvedPipeStaticTile extends Tile{
+    // here we determine which image to call, determine which direction this tile has and call the super constructor
     public CurvedPipeStaticTile(int currentRow, int currentColumn, String type ) {
         super(currentRow, currentColumn, "/StaticCurvedPipe11.png");
 

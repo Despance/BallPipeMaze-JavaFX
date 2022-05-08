@@ -3,9 +3,9 @@ package Tiles;
 import javafx.scene.image.ImageView;
 
 
-
+// this is a superclass for our tiles
 public class Tile extends ImageView {
-
+    // here is our data field
     private int currentRow;
     private int currentColumn;
     private double startX;
@@ -15,7 +15,7 @@ public class Tile extends ImageView {
     private int size;
     private String direction;
 
-
+    // this is our constructor
     public Tile(int currentRow,int currentColumn,String url){
         super(url);
         this.currentColumn = currentColumn;
@@ -51,7 +51,7 @@ public class Tile extends ImageView {
         }
     }
 
-
+    // setter and getter methods
     public int getCurrentRow() {
         return currentRow;
     }
