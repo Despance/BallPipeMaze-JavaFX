@@ -6,19 +6,13 @@ import javafx.scene.image.ImageView;
 
 public class Tile extends ImageView {
 
-
     private int currentRow;
     private int currentColumn;
-
     private double startX;
     private double startY;
     private double finishX;
     private double finishY;
-
     private int size;
-
-
-
     private String direction;
 
 
@@ -33,11 +27,13 @@ public class Tile extends ImageView {
 
 
 
+    //This method returns a direction according to the start and finish mouse positions.
     public String checkDirection(){
+
+        //Get the degree between to points
         double degree = -Math.atan2(finishY-startY, finishX- startX);
 
-        System.out.println(degree);
-
+        //Print and return the position
         if(degree< Math.PI/4 &&degree > 0|| degree>-Math.PI/4 && degree<0){
             System.out.println("Right");
             return "Right";
@@ -53,11 +49,7 @@ public class Tile extends ImageView {
         }else{
             return null;
         }
-
     }
-
-
-
 
 
     public int getCurrentRow() {
@@ -122,6 +114,5 @@ public class Tile extends ImageView {
 
     public void setDirection(String direction) {
         this.direction = direction;
-        System.out.println("direction set to "+direction);
     }
 }

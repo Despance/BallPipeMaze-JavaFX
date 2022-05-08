@@ -12,10 +12,6 @@ public class Io {
 
     Tile tile;
 
-
-
-    public Io(){
-    }
     public Io(File file){
         this.file = file;
 
@@ -29,7 +25,7 @@ public class Io {
                throw new Exception("File Not Found");
        }
        catch(Exception ex){
-           System.out.println(ex);
+           System.out.println(ex.getLocalizedMessage());
            System.exit(1);
        }
             list = new Tile[16];

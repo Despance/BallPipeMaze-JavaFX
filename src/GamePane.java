@@ -1,19 +1,16 @@
 import Tiles.*;
 import javafx.animation.PathTransition;
 import javafx.animation.TranslateTransition;
-import javafx.application.Platform;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.*;
 import javafx.util.Duration;
 
-import java.util.Optional;
 
 public class GamePane extends Pane {
 
+
+    //Variables for the construct the custom pane
     private static boolean isMoving = false;
 
     private int rowCount;
@@ -29,12 +26,10 @@ public class GamePane extends Pane {
     private boolean levelSolved = false;
 
     private PathTransition pathTransition = new PathTransition();
-
-
-
     Ball ball;
 
 
+    //Game Pane constructor
     public GamePane(int rowCount,int columnCount,int cellSize,int spacing){
         this.rowCount = rowCount;
         this.columnCount=columnCount;
@@ -43,18 +38,23 @@ public class GamePane extends Pane {
     }
 
 
-
+    //This method adds given tile to the pane.
     public void add(Tile e){
         super.getChildren().add(e);
-        //e.setPreserveRatio(true);
+
+        //Resize the tile
         e.setFitWidth(cellSize);
         e.setFitHeight(cellSize);
+
+        //Set the position of the tile
         e.setTranslateX(currentRow*(cellSize+spacing));
         e.setTranslateY(currentColumn*(cellSize+spacing));
 
+        //Set the row and column values of the tile
         e.setCurrentRow(currentRow);
         e.setCurrentRow(currentColumn);
 
+        //Informative message when initializing the tiles
         System.out.println(currentRow+ " "+ currentColumn+" "+e.getClass());
 
         currentRow++;
@@ -65,10 +65,15 @@ public class GamePane extends Pane {
 
     }
 
+
+    //This method adds the ball to the Starter Tile
     public void addBall( Ball ball){
         this.ball = ball;
         super.getChildren().add(ball);
         ball.toFront();
+
+
+        //Find the starter tile
         StarterTile starterTile = null;
         for (Node tile :getChildren()){
             if (tile instanceof StarterTile ){
@@ -77,6 +82,7 @@ public class GamePane extends Pane {
             }
 
         }
+        //Set balls position
         if (starterTile!=null){
 
             ball.setTranslateX(starterTile.getTranslateX()+50);
@@ -85,6 +91,7 @@ public class GamePane extends Pane {
 
     }
 
+    //This method is to debug the line. It shows the path will be taken by the ball
     public void drawLine(){
         Path path = makeLine();
 
@@ -93,14 +100,18 @@ public class GamePane extends Pane {
 
     }
 
+
+
     public Path makeLine(){
+
+        //Create a path
         Path path = new Path();
-        //path.setVisible(false);
 
         boolean canMove = true;
         //Get current tile
         Tile currentTile= null;
 
+        //Find the starter tile and draw a line according to it's type
         for (Node tile :getChildren()){
             if (tile instanceof StarterTile){
                 currentTile = (Tile) tile;
@@ -113,26 +124,20 @@ public class GamePane extends Pane {
                     ball.setDirection("left");
                     path.getElements().add(new LineTo(100*currentTile.getCurrentColumn(),100*currentTile.getCurrentRow()+50));
                 }
-
-
                 break;
             }
         }
 
-        //Find the next tile
 
 
         do {
+            Tile nextTile = null;
 
-
-        Tile nextTile = null;
-        if(currentTile!= null){
-
+            if(currentTile!= null){
             int row = currentTile.getCurrentRow();
             int column = currentTile.getCurrentColumn();
 
-
-
+            //find the next tile's coordinates
             switch (ball.getDirection()){
                 case "down":
                     row++;
@@ -149,7 +154,7 @@ public class GamePane extends Pane {
             }
 
 
-
+            //Find the next tile
             for (Node tilex : getChildren()){
                 Tile tile = null;
                 if (tilex instanceof Tile)
@@ -157,16 +162,13 @@ public class GamePane extends Pane {
                 if (tile != null){
                     if (tile.getCurrentRow() == row && tile.getCurrentColumn() == column){
                         nextTile = tile;
-
-
                     }
                 }
-
-
             }
+
+
             if(nextTile!=null && nextTile.getDirection() != null){
-
-
+                //Draw the line according to next tile's type if it is suitable to transition of the ball.
                 switch (ball.getDirection()) {
                     case "up":
                         if (nextTile.getDirection().equals("vertical")) {
@@ -329,65 +331,57 @@ public class GamePane extends Pane {
                         }
                         break;
                 }
+                //Give an informative message if the line is drawn
                 System.out.println(currentTile.getCurrentRow()+" "+currentTile.getCurrentColumn()+" drawed " +currentTile.getClass());
 
+                //Finish the game if you have reached the end tile
                 if (nextTile instanceof EndTile){
-
                     ball.toFront();
                     canMove = false;
                     System.out.println("finish");
-
                     pathTransition.setPath(path);
                     pathTransition.setNode(ball);
                     pathTransition.setDuration(Duration.millis(1000));
                     pathTransition.play();
                     levelSolved = true;
 
-
-
                 }else{
+                    //Our next tile will be our current tile in the next iteration of the loop.
                     currentTile = nextTile;
                 }
-
-
-
-
             }else{
+                //break the loop
                 canMove = false;
             }
         }
 
-
-
         }while (canMove);
-
 
         return path;
 
     }
 
 
-
+    //This method changes the given tile according to the given direction.
     public void changeTiles(Tile t,String d){
-
-
             if (!isMoving && t instanceof Movable && !(t instanceof FreeTile)){
 
+                //Get the first tile's coordinates
                 int tempRow = t.getCurrentRow();
                 int tempColumn = t.getCurrentColumn();
 
 
                 Tile changedTile = null;
+
+                //Find the tile will be changed
                 for(Node tile : getChildren()){
                     Tile currentTile = null;
                     if (tile instanceof FreeTile){
                         currentTile = (Tile) tile;
                     }
 
-
                     if(currentTile!=null){
-
-
+                        //Calculate the tile will be found according to the direction
                         switch (d){
                             case "Up":
                                 if(currentTile.getCurrentColumn()==tempColumn && currentTile.getCurrentRow() ==tempRow-1)
@@ -408,15 +402,16 @@ public class GamePane extends Pane {
                         }
                     }
 
-
                 }
 
                 if(changedTile!=null){
+                    //Get the temp positions
                     double tempX = t.getTranslateX();
                     double tempY = t.getTranslateY();
                     double tX = changedTile.getTranslateX();
                     double tY = changedTile.getTranslateY();
 
+                    //Animate the first tile
                     isMoving= true;
                     t.toFront();
                     TranslateTransition translate = new TranslateTransition();
@@ -426,39 +421,33 @@ public class GamePane extends Pane {
                     translate.setDuration(Duration.millis(500));
                     translate.play();
 
+                    //Set the first tile's coordinate with the new ones
                     t.setCurrentRow(changedTile.getCurrentRow()) ;
                     t.setCurrentColumn(changedTile.getCurrentColumn());
-                    //System.out.println(tempX + " "+ tempY);
+
+                    //Animate the second tile
                     TranslateTransition translateB = new TranslateTransition();
                     translateB.setToX(tempX);
                     translateB.setToY(tempY);
                     translateB.setNode(changedTile);
                     translateB.setDuration(Duration.millis(500));
                     translateB.play();
+
+                    //Set the isMoving the false to wait animation to finish and after every move check the solution
                     translate.setOnFinished(event ->{
                         isMoving=false;
                         makeLine();
 
                     } );
-
+                    //Change the move count text at the pane
                     GameScene.text.setText("move count: " + ++numberOfMoves);
 
-
+                    //Set the second tile's coordinates
                     changedTile.setCurrentRow(tempRow);
                     changedTile.setCurrentColumn(tempColumn);
 
-
                 }
             }
-
-
-
-
-
-
-
-
-
     }
 
     public Ball getBall() {
